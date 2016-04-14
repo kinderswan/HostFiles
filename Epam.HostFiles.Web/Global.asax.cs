@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Epam.HostFiles.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +14,8 @@ namespace Epam.HostFiles.Web
     {
         protected void Application_Start()
         {
+            System.Data.Entity.Database.SetInitializer(new HostFilesSeedData());
+            UnityConfig.RegisterComponents();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
