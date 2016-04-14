@@ -175,6 +175,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Scripts\collections\" />
+    <Folder Include="Scripts\components\" />
+    <Folder Include="Scripts\models\" />
+    <Folder Include="Scripts\routers\" />
+    <Folder Include="Scripts\views\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -201,16 +206,18 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\ai.0.15.0-build58334.js" />
-    <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
-    <Content Include="Scripts\backbone.js" />
+    <Content Include="Scripts\lib\ai.0.15.0-build58334.js" />
+    <Content Include="Scripts\lib\ai.0.15.0-build58334.min.js" />
+    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\lib\backbone.js" />
+    <Content Include="Scripts\lib\Backbone.ModalDialog.js" />
     <Content Include="Scripts\lib\backbone.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\lib\bootstrap.js" />
+    <Content Include="Scripts\lib\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Scripts\backbone.min.map" />
+    <Content Include="Scripts\lib\backbone.min.map" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -219,18 +226,20 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <None Include="Scripts\jquery-2.2.3.intellisense.js" />
-    <Content Include="Scripts\jquery-2.2.3.js" />
+    <None Include="Scripts\lib\jquery-1.10.2.intellisense.js" />
+    <None Include="Scripts\lib\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\lib\jquery-2.2.3.js" />
     <Content Include="Scripts\lib\jquery-2.2.3.min.js" />
     <Content Include="Scripts\lib\json2.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\underscore.js" />
+    <Content Include="Scripts\lib\modernizr-2.6.2.js" />
+    <Content Include="Scripts\lib\modernizr-2.8.3.js" />
+    <Content Include="Scripts\lib\r.js" />
+    <Content Include="Scripts\lib\require.js" />
+    <Content Include="Scripts\lib\respond.js" />
+    <Content Include="Scripts\lib\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\lib\respond.matchmedia.addListener.min.js" />
+    <Content Include="Scripts\lib\respond.min.js" />
+    <Content Include="Scripts\lib\underscore.js" />
     <Content Include="Scripts\lib\underscore.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -246,8 +255,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Scripts\underscore.min.map" />
-    <Content Include="Scripts\jquery-2.2.3.min.map" />
+    <Content Include="Scripts\lib\underscore.min.map" />
+    <Content Include="Scripts\lib\jquery-2.2.3.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Epam.HostFiles.Core\Epam.HostFiles.Core.csproj">
