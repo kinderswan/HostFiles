@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Epam.HostFiles.Core
+namespace Epam.HostFiles.Core.Infrastructure.Interfaces
 {
-    public class Class1
+    public interface IDbFactory : IDisposable
     {
+        HostFilesEntities Init();
     }
 }
