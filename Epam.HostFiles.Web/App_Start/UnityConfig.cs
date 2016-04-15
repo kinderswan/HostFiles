@@ -8,6 +8,8 @@ using Epam.HostFiles.Services;
 using Epam.HostFiles.Core.Repository;
 using Epam.HostFiles.Core.Infrastructure;
 using System.Web.Http;
+using Epam.HostFiles.IO.Interfaces;
+using Epam.HostFiles.IO;
 
 namespace Epam.HostFiles.Web
 {
@@ -23,6 +25,7 @@ namespace Epam.HostFiles.Web
             container.RegisterType<IUserInfoRepository, UserInfoRepository>();
             container.RegisterType<IUnitOfWork, UnitOfWork>();
             container.RegisterType<IDbFactory, DbFactory>();
+            container.RegisterType<IFileMethods, FileMethods>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
             GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(container);

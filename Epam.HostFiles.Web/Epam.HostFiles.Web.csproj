@@ -187,6 +187,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Api\DirectoryController.cs" />
     <Compile Include="Controllers\Api\UserInfoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -262,6 +263,10 @@
     <ProjectReference Include="..\Epam.HostFiles.Core\Epam.HostFiles.Core.csproj">
       <Project>{ca96bfde-857b-49f5-8db4-123f651fddf1}</Project>
       <Name>Epam.HostFiles.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Epam.HostFiles.IO\Epam.HostFiles.IO.csproj">
+      <Project>{6737e7ac-c3cf-48b2-a199-8cdc30001836}</Project>
+      <Name>Epam.HostFiles.IO</Name>
     </ProjectReference>
     <ProjectReference Include="..\Epam.HostFiles.Model\Epam.HostFiles.Model.csproj">
       <Project>{4af8e69c-1adc-490f-8cf2-812f44de24e6}</Project>
