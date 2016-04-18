@@ -8,6 +8,9 @@ using Epam.HostFiles.Services;
 using Epam.HostFiles.Core.Repository;
 using Epam.HostFiles.Core.Infrastructure;
 using System.Web.Http;
+using Epam.HostFiles.IO.Interfaces;
+using Epam.HostFiles.IO;
+using Epam.HostFiles.Web.Global.Auth;
 
 namespace Epam.HostFiles.Web
 {
@@ -15,7 +18,7 @@ namespace Epam.HostFiles.Web
     {
         public static void RegisterComponents()
         {
-			var container = new UnityContainer();
+            var container = new UnityContainer();
 
             container.RegisterType<IUserRoleService, UserRoleService>();
             container.RegisterType<IUserInfoService, UserInfoService>();
@@ -23,6 +26,9 @@ namespace Epam.HostFiles.Web
             container.RegisterType<IUserInfoRepository, UserInfoRepository>();
             container.RegisterType<IUnitOfWork, UnitOfWork>();
             container.RegisterType<IDbFactory, DbFactory>();
+            container.RegisterType<IFileMethods, FileMethods>();
+            container.RegisterType<IDirectoryMethods, DirectoryMethods>();
+            container.RegisterType<IAuthentication, HostFilesAuthentication>(new PerThreadLifetimeManager());
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
             GlobalConfiguration.Configuration.DependencyResolver = new Unity.WebApi.UnityDependencyResolver(container);

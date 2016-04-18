@@ -1,4 +1,5 @@
 ﻿using Epam.HostFiles.Model.Models;
+using Epam.HostFiles.Web.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
