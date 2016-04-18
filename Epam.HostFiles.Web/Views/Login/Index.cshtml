@@ -1,0 +1,35 @@
+﻿@model Epam.HostFiles.Web.Model.Models.UserInfoViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+{
+    <div class="container">
+        @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-signin" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            if ((bool?)TempData["RegYes"] == true)
+            {
+                <h5 class="form-signin-heading">You have been succesfully registered.</h5>
+            }
+            <h2 class="form-signin-heading">Please sign in</h2>
+                @Html.LabelFor(model => model.Login, new { @class = "sr-only" })
+                @Html.TextBoxFor(model => model.Login, new { @class = "form-control", @placeholder = "Email address", @required = "required", @autofocus = "autofocus" })
+                @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
+
+                @Html.LabelFor(model => model.Password, new { @class = "sr-only" })
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Password", @required = "required", @autofocus = "autofocus" })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBox("isRemember", true) Remember me
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        }
+    </div>
+}

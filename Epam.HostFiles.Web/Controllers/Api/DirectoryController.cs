@@ -13,24 +13,26 @@ namespace Epam.HostFiles.Web.Controllers.Api
     public class DirectoryController : ApiController
     {
         private readonly IFileMethods _fileMethods;
+        private readonly IDirectoryMethods _dirMethods;
 
-        public DirectoryController(IFileMethods fileMethods)
+        public DirectoryController(IFileMethods fileMethods, IDirectoryMethods dirMethods)
         {
             _fileMethods = fileMethods;
+            _dirMethods = dirMethods;
         }
 
         [Route("api/files/{drive}:/{*path}")]
-        public IHttpActionResult GetFakeFiles(string drive, string path)
+        public IHttpActionResult GetFiles(string drive, string path)
         {
-            var filesPath = drive + "\\" + path;
+            var filesPath = drive + ":\\" + path;
             return Json(_fileMethods.GetFiles(filesPath));
         }
 
-        [Route("api/files/")]
-        public IHttpActionResult GetFakeDrives()
+        [Route("api/drives/{drive}:/{*path}")]
+        public IHttpActionResult GetDrives(string drive, string path)
         {
-            var drives = DriveInfo.GetDrives();
-            return Json(drives);
+            var drivesPath = drive + ":\\" + path;
+            return Json(_dirMethods.GetDirectories(drivesPath));
         }
 
         [HttpPost]

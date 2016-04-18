@@ -9,7 +9,7 @@ namespace Epam.HostFiles.IO.Interfaces
 {
     public interface IDirectoryMethods
     {
-        IEnumerable<DirectoryInfo> GetDirectories(string path);
+        IEnumerable<string> GetDirectories(string path);
         DirectoryInfo AddDirectory(string path);
     }
 }
