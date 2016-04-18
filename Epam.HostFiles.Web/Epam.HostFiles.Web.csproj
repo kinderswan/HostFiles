@@ -175,10 +175,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\collections\" />
-    <Folder Include="Scripts\components\" />
-    <Folder Include="Scripts\routers\" />
-    <Folder Include="Scripts\views\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -187,10 +183,10 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Api\DirectoryController.cs" />
+    <Compile Include="Controllers\Api\LoginController.cs" />
     <Compile Include="Controllers\Api\UserInfoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -202,6 +198,7 @@
     <Compile Include="Global\Auth\UserIdentity.cs" />
     <Compile Include="Global\Auth\UserProvider.cs" />
     <Compile Include="Mapping\EntityMapper.cs" />
+    <Compile Include="Models\UserInfoRegisterModel.cs" />
     <Compile Include="Models\UserInfoViewModel.cs" />
     <Compile Include="Models\UserRoleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -215,9 +212,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\app\router.js" />
+    <Content Include="Scripts\app\utility.js" />
     <Content Include="Scripts\lib\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\lib\ai.0.15.0-build58334.min.js" />
-    <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\main.js" />
     <Content Include="Scripts\lib\backbone.js" />
     <Content Include="Scripts\lib\Backbone.ModalDialog.js" />
     <Content Include="Scripts\lib\backbone.min.js" />
@@ -239,7 +237,18 @@
     <None Include="Scripts\lib\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\lib\jquery-2.2.3.js" />
     <Content Include="Scripts\lib\jquery-2.2.3.min.js" />
+    <Content Include="Scripts\lib\jquery-ui-1.8.11.js" />
+    <Content Include="Scripts\lib\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\lib\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\lib\jquery.unobtrusive-ajax.min.js" />
+    <None Include="Scripts\lib\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\lib\jquery.validate.js" />
+    <Content Include="Scripts\lib\jquery.validate.min.js" />
+    <Content Include="Scripts\lib\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\lib\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\lib\json2.js" />
+    <Content Include="Scripts\lib\knockout-2.0.0.debug.js" />
+    <Content Include="Scripts\lib\knockout-2.0.0.js" />
     <Content Include="Scripts\lib\modernizr-2.6.2.js" />
     <Content Include="Scripts\lib\modernizr-2.8.3.js" />
     <Content Include="Scripts\lib\r.js" />
@@ -250,7 +259,13 @@
     <Content Include="Scripts\lib\respond.min.js" />
     <Content Include="Scripts\lib\underscore.js" />
     <Content Include="Scripts\lib\underscore.min.js" />
+    <Content Include="Scripts\models\DirectoryInfo.js" />
+    <Content Include="Scripts\models\fileInfo.js" />
     <Content Include="Scripts\models\userInfo.js" />
+    <Content Include="Scripts\views\homePage.js" />
+    <Content Include="Scripts\views\loginPage.js" />
+    <Content Include="Templates\homePage.htm" />
+    <Content Include="Templates\loginPage.htm" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

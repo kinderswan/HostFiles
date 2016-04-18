@@ -1,5 +1,5 @@
 ﻿using Epam.HostFiles.Model.Models;
-using Epam.HostFiles.Web.Model.Models;
+using Epam.HostFiles.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,6 +45,14 @@ namespace Epam.HostFiles.Web.Mapping
                 Role = role.Role,
                 UserRoleId = role.UserRoleId,
                 RoleDescription = role.RoleDescription
+            };
+        }
+        public static UserInfo ToUserInfo(this UserInfoRegisterModel model)
+        {
+            return new UserInfo
+            {
+                Login = model.Login,
+                Password = model.Password
             };
         }
 

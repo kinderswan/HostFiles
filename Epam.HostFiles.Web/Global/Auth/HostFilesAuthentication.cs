@@ -46,6 +46,10 @@ namespace Epam.HostFiles.Web.Global.Auth
         public void LogOut()
         {
             var httpCookie = HttpContext.Response.Cookies[CookieName];
+            if (httpCookie != null)
+            {
+                httpCookie.Value = string.Empty;
+            }
         }
 
         private void CreateCookie(string email, bool isPersistent = false)
