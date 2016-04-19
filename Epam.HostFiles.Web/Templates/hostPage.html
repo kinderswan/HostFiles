@@ -1,0 +1,18 @@
+﻿<div id="dirs-info">
+    <% for (var i = 0; i < dirs.length; i++) { %>
+    <div>
+        <div class='five columns'>
+            <a href='#files/<%= dirs.models[i].attributes.directoryName.replace(/\\/g, "/")%>'><%= dirs.models[i].attributes.directoryName.replace(/\\/g, "/")%></a>
+        </div>
+    </div>
+    <% } %>
+</div>
+<div id="files-info">
+    <% for (var i = 0; i < files.length; i++) { %>
+    <div>
+        <div class='five columns'>
+          <a href="#files/<%= files.models[i].attributes.path%>"><%= files.models[i].attributes.path%></a>
+        </div>
+    </div>
+    <% } %>
+</div>

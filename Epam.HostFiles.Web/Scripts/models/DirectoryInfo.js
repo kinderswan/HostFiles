@@ -1,6 +1,12 @@
 ﻿$(function () {
-    appHostFiles.DirectoryInfo = Backbone.Model.extend();
+    appHostFiles.DirectoryInfo = Backbone.Model.extend({
+        defaults: {
+            directoryName: ''
+        }
+    });
+
     appHostFiles.DirectoryInfoCollection = Backbone.Collection.extend({
-        model: window.appHostFiles.DirectoryInfo
+        model: window.appHostFiles.DirectoryInfo,
+        url: ""
     });
 })

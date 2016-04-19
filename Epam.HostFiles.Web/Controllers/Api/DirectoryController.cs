@@ -1,4 +1,5 @@
 ﻿using Epam.HostFiles.IO.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,14 +26,25 @@ namespace Epam.HostFiles.Web.Controllers.Api
         public IHttpActionResult GetFiles(string drive, string path)
         {
             var filesPath = drive + ":\\" + path;
-            return Json(_fileMethods.GetFiles(filesPath));
+            var parseList = new List<dynamic>();
+            foreach (var x in _fileMethods.GetFiles(filesPath))
+            {
+                parseList.Add(new { fileName = x.Name, path = x.FullName, size = x.Length });
+            }
+            return Json(parseList);
         }
 
-        [Route("api/drives/{drive}:/{*path}")]
+        [Route("api/dirs/{drive}:/{*path}")]
         public IHttpActionResult GetDrives(string drive, string path)
         {
             var drivesPath = drive + ":\\" + path;
-            return Json(_dirMethods.GetDirectories(drivesPath));
+
+            var parseList = new List<dynamic>();
+            foreach (var x in _dirMethods.GetDirectories(drivesPath))
+            {
+                parseList.Add(new { directoryName = x });
+            }
+            return Json(parseList);
         }
 
         [HttpPost]

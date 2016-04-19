@@ -19,7 +19,7 @@
                 console.dir(value);
             })
             .error(function () {
-                alert("something gone bad");
+                alert("something going bad");
             });
             return false;
         }

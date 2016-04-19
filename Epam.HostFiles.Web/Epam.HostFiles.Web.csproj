@@ -259,11 +259,13 @@
     <Content Include="Scripts\lib\respond.min.js" />
     <Content Include="Scripts\lib\underscore.js" />
     <Content Include="Scripts\lib\underscore.min.js" />
-    <Content Include="Scripts\models\DirectoryInfo.js" />
+    <Content Include="Scripts\models\directoryInfo.js" />
     <Content Include="Scripts\models\fileInfo.js" />
     <Content Include="Scripts\models\userInfo.js" />
-    <Content Include="Scripts\views\homePage.js" />
-    <Content Include="Scripts\views\loginPage.js" />
+    <Content Include="Scripts\views\hostView.js" />
+    <Content Include="Scripts\views\homeView.js" />
+    <Content Include="Scripts\views\loginView.js" />
+    <Content Include="Templates\hostPage.html" />
     <Content Include="Templates\homePage.htm" />
     <Content Include="Templates\loginPage.htm" />
     <Content Include="Web.config" />

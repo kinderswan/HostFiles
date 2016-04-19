@@ -4,9 +4,10 @@
     };
 
     mod.renderTemplate = function (templateFileName, $el, data) {
-        data = data || {};
+        datum = data || {};
         mod.getHtmlFromTemplate(templateFileName, function (html) {
-            $el.empty().append(_.template(html, data));
+            var result = _.template(html);
+            $el.empty().append(result(datum));
         });
     };
 
