@@ -17,6 +17,7 @@ namespace Epam.HostFiles.IO
 
         public IEnumerable<string> GetDirectories(string path)
         {
+            //Unauthorized access
             return Directory.GetDirectories(path);
         }
     }

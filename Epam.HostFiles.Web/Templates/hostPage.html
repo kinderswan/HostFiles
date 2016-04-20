@@ -1,18 +1,39 @@
-﻿<div id="dirs-info">
-    <% for (var i = 0; i < dirs.length; i++) { %>
-    <div>
+﻿
+<h2><%= parentDir%></h2>
+<hr>
+<div style="padding-left:70px">
+    <div id="dirs-info">
         <div class='five columns'>
-            <a href='#files/<%= dirs.models[i].attributes.directoryName.replace(/\\/g, "/")%>'><%= dirs.models[i].attributes.directoryName.replace(/\\/g, "/")%></a>
+            <a href='#files/<%= parentDir.split("/").slice(0,-1).join("/")%>'>[...]</a>
         </div>
+
+        <% for (var i = 0; i < dirs.length; i++) { %>
+        <div>
+            <div class='five columns'>
+                &lt;DIR&gt;&nbsp;<a href='#files/<%= dirs.models[i].attributes.directoryName.replace(/\\/g, "/")%>' class="host-directory"><%= dirs.models[i].attributes.directoryName.split("\\").pop()%></a>
+            </div>
+        </div>
+        <% } %>
     </div>
-    <% } %>
-</div>
-<div id="files-info">
-    <% for (var i = 0; i < files.length; i++) { %>
+    <div id="files-info">
+        <% for (var i = 0; i < files.length; i++) { %>
+        <div>
+            <div class='five columns'>
+                &lt;FILE&gt;&nbsp;<a href='api/files/download/<%= files.models[i].attributes.path.replace(/\\/g, "/")%>' class="host-file"><%= files.models[i].attributes.path.split("\\").pop()%></a>
+            </div>
+        </div>
+        <% } %>
+    </div>
+    <hr />
     <div>
-        <div class='five columns'>
-          <a href="#files/<%= files.models[i].attributes.path%>"><%= files.models[i].attributes.path%></a>
-        </div>
+        <form id="file-upload" name="fileupload" method="post" enctype="multipart/form-data" action="api/files/<%= parentDir.replace(/\\/g, '/')%>">
+                <div>
+                    <label for="file">Upload file</label>
+                    <input name="file" type="file" />
+                </div>
+                <div>
+                    <input type="submit" value="Submit" />
+                </div>
+        </form> 
     </div>
-    <% } %>
 </div>

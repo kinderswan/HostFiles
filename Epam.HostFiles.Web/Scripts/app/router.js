@@ -8,7 +8,7 @@
         initialize: function () {
             this.loginPageView = new appHostFiles.LoginPageView({ el: $("#content") });
             this.homePageView = new appHostFiles.HomePageView({ el: $("#content") });
-            this.hostPageView = new appHostFiles.HostPageView();
+            this.hostPageView = new appHostFiles.HostPageView({ el: $("#content") });
         },
         login: function () {
             this.loginPageView.render();

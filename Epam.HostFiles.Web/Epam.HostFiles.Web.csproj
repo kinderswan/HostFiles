@@ -182,7 +182,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\Api\DirectoryController.cs" />
+    <Compile Include="Controllers\Api\HostController.cs" />
     <Compile Include="Controllers\Api\LoginController.cs" />
     <Compile Include="Controllers\Api\UserInfoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -197,6 +197,7 @@
     <Compile Include="Global\Auth\IUserProvider.cs" />
     <Compile Include="Global\Auth\UserIdentity.cs" />
     <Compile Include="Global\Auth\UserProvider.cs" />
+    <Compile Include="Global\Helpers\HttpFileResult.cs" />
     <Compile Include="Mapping\EntityMapper.cs" />
     <Compile Include="Models\UserInfoRegisterModel.cs" />
     <Compile Include="Models\UserInfoViewModel.cs" />
