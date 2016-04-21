@@ -4,7 +4,8 @@
         path: '',
         events: {
             "submit #file-upload": "uploadFile",
-            "submit #dir-add": "addDirectory"
+            "submit #dir-add": "addDirectory",
+            "click #parent-dir": "navigateToParent"
         },
         render: function (drive, path) {
             this.drive = drive;
@@ -95,6 +96,13 @@
                 parentDir: rootDir
             });
         },
+        navigateToParent: function (e) {
+            if (this.path === "") {
+                e.preventDefault();
+                appHostFiles.App.navigate("files", true);
+            }
+                
+        }
 
     })
 })

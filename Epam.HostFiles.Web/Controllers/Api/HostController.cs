@@ -16,12 +16,23 @@ namespace Epam.HostFiles.Web.Controllers.Api
     {
         private readonly IFileMethods _fileMethods;
         private readonly IDirectoryMethods _dirMethods;
+        private readonly IDriveMethods _driveMethods;
 
-        public HostController(IFileMethods fileMethods, IDirectoryMethods dirMethods)
+        public HostController(IFileMethods fileMethods, IDirectoryMethods dirMethods, IDriveMethods driveMethods)
         {
             _fileMethods = fileMethods;
             _dirMethods = dirMethods;
+            _driveMethods = driveMethods;
         }
+
+        #region drives
+        [HttpGet]
+        [Route("api/drives")]
+        public IHttpActionResult GetDrives()
+        {
+            return Json(_driveMethods.GetDrives());
+        }
+        #endregion
 
         #region directories
         [HttpGet]
@@ -29,12 +40,12 @@ namespace Epam.HostFiles.Web.Controllers.Api
         public IHttpActionResult GetDrives(string drive, string path)
         {
             var drivesPath = (drive + ":\\" + path).Replace(@"/", @"\");
-            var parseList = new List<dynamic>();
+            var dirList = new List<dynamic>();
             foreach (var x in _dirMethods.GetDirectories(drivesPath))
             {
-                parseList.Add(new { directoryName = x });
+                dirList.Add(new { directoryName = x });
             }
-            return Json(parseList);
+            return Json(dirList);
         }
         [HttpPost]
         [Route("api/dirs/{drive}:/{*path}")]
@@ -54,12 +65,12 @@ namespace Epam.HostFiles.Web.Controllers.Api
         public IHttpActionResult GetFiles(string drive, string path)
         {
             var filesPath = (drive + ":\\" + path).Replace(@"/", @"\");
-            var parseList = new List<dynamic>();
+            var fileList = new List<dynamic>();
             foreach (var x in _fileMethods.GetFiles(filesPath))
             {
-                parseList.Add(new { fileName = x.Name, path = x.FullName, size = x.Length });
+                fileList.Add(new { fileName = x.Name, path = x.FullName, size = x.Length });
             }
-            return Json(parseList);
+            return Json(fileList);
         }
 
         [HttpGet]

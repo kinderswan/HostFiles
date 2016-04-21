@@ -4,7 +4,7 @@
 <div style="padding-left:70px">
     <div id="dirs-info">
         <div class='five columns'>
-            <a href='#files/<%= parentDir.split("/").slice(0,-1).join("/")%>'>[...]</a>
+            <a id="parent-dir" href = '#files/<%= parentDir.split("/").slice(0,-1).join("/")%>'>[...]</a>
         </div>
 
         <% for (var i = 0; i < dirs.length; i++) { %>
