@@ -24,9 +24,21 @@
         </div>
         <% } %>
     </div>
+    <hr/>
+    <div>
+        <form id="dir-add" name="dirupload" method="post" enctype="multipart/form-data">
+            <div>
+                <label for="dirname">Add directory</label>
+                <input name="dirname" type="text" />
+            </div>
+            <div>
+                <input type="submit" value="Submit" />
+            </div>
+        </form>
+    </div>
     <hr />
     <div>
-        <form id="file-upload" name="fileupload" method="post" enctype="multipart/form-data" action="api/files/<%= parentDir.replace(/\\/g, '/')%>">
+        <form id="file-upload" name="fileupload" method="post" enctype="multipart/form-data">
                 <div>
                     <label for="file">Upload file</label>
                     <input name="file" type="file" />

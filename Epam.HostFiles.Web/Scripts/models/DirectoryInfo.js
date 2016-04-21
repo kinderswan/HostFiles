@@ -7,6 +7,9 @@
 
     appHostFiles.DirectoryInfoCollection = Backbone.Collection.extend({
         model: window.appHostFiles.DirectoryInfo,
-        url: ""
+        url: "",
+        comparator: function (dir) {
+            return dir.get("directoryName");
+        }
     });
 })

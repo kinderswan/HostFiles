@@ -24,7 +24,7 @@ namespace Epam.HostFiles.Web.Controllers.Api
         }
 
         #region directories
-
+        [HttpGet]
         [Route("api/dirs/{drive}:/{*path}")]
         public IHttpActionResult GetDrives(string drive, string path)
         {
@@ -36,7 +36,16 @@ namespace Epam.HostFiles.Web.Controllers.Api
             }
             return Json(parseList);
         }
-
+        [HttpPost]
+        [Route("api/dirs/{drive}:/{*path}")]
+        public IHttpActionResult AddDirectory(string drive, string path)
+        {
+            var dirName = HttpContext.Current.Request.Form[0];
+            string dirpath = path == null ?
+                drive + ":\\" + dirName :
+                drive + ":\\" + path.Replace(@"/", @"\") + "\\" + dirName;
+            return Json(_dirMethods.AddDirectory(dirpath));
+        }
         #endregion
 
         #region files
@@ -66,7 +75,7 @@ namespace Epam.HostFiles.Web.Controllers.Api
 
         [HttpPost]
         [Route("api/files/{drive}:/{*path}")]
-        public async Task Upload(string drive, string path)
+        public async Task UploadFile(string drive, string path)
         {
             var file = HttpContext.Current.Request.Files[0];
             string filepath = path == null ?
