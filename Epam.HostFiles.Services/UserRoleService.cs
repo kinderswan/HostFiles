@@ -31,6 +31,11 @@ namespace Epam.HostFiles.Services
             _userRoleRepository.Delete(r => r.UserRoleId == id);
         }
 
+        public IEnumerable<UserRole> GetUserRoles()
+        {
+            return _userRoleRepository.GetAll();
+        }
+
         public UserRole GetUserRole(int id)
         {
             return _userRoleRepository.Get(r => r.UserRoleId == id);

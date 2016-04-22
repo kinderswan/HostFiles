@@ -60,7 +60,7 @@
                         self.renderSuccessDir(e, rootDir);
                     }
                     else {
-                        alert("Same directory");
+                        alert("Creating directory that already exists!");
                     }
                 },
                 error: function () {
@@ -85,23 +85,28 @@
                 parentDir: rootDir
             });
         },
+
         renderSuccessDir: function (e, rootDir) {
+            console.log(rootDir);
+            console.log(e.target[0].value);
             appHostFiles.directoryCollection.add(new appHostFiles.DirectoryInfo({
-                directoryName: e.target[0].value,
+                directoryName: rootDir +"\\"+ e.target[0].value,
             }));
             $("#content").empty();
+            var self = this;
             appHostFiles.utility.renderTemplate('hostPage.html', $("#content"), {
                 dirs: appHostFiles.directoryCollection,
                 files: appHostFiles.fileCollection,
                 parentDir: rootDir
             });
         },
+
         navigateToParent: function (e) {
             if (this.path === "") {
                 e.preventDefault();
                 appHostFiles.App.navigate("files", true);
             }
-                
+
         }
 
     })

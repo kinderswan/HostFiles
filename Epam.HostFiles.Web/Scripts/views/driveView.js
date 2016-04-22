@@ -1,6 +1,5 @@
 ﻿$(function () {
     appHostFiles.DrivePageView = Backbone.View.extend({
-        drive: '',
         events: {
         },
         render: function () {

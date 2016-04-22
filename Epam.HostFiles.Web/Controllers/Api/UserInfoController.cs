@@ -10,7 +10,7 @@ using System.Web.Http;
 
 namespace Epam.HostFiles.Web.Controllers.Api
 {
-    [HostFilesAuthorize(Roles = "Admin")]
+    //[HostFilesAuthorize(Roles = "Admin")]
     public class UserInfoController : ApiController
     {
         private readonly IUserInfoService _userService;

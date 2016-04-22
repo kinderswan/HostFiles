@@ -2,6 +2,7 @@
 using Epam.HostFiles.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -34,6 +35,7 @@ namespace Epam.HostFiles.Web.Mapping
                 Password = info.Password,
                 UserInfoId = info.UserInfoId,
                 UserRoleId = info.UserRoleId,
+                UserRole = info.UserRole.Role,
                 Login = info.Login,
                 Name = info.Name
             };
@@ -55,7 +57,29 @@ namespace Epam.HostFiles.Web.Mapping
                 Password = model.Password
             };
         }
-
+        public static DirectoryViewModel ToDirectoryViewModel(this string dir)
+        {
+            return new DirectoryViewModel
+            {
+                DirectoryName = dir
+            };
+        }
+        public static FileViewModel ToFileViewModel(this FileInfo file)
+        {
+            return new FileViewModel
+            {
+                Filename = file.Name,
+                Path = file.FullName,
+                Size = file.Length
+            };
+        }
+        public static DriveViewModel ToDriveViewModel(this DriveInfo drive)
+        {
+            return new DriveViewModel
+            {
+                DriveName = drive.Name
+            };
+        }
 
     }
 }

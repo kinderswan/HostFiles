@@ -1,10 +1,10 @@
 ﻿$(function () {
     appHostFiles.UserInfo = Backbone.Model.extend({
         defaults: {
-            name: '',
-            login: '',
-            password: '',
-            role: 'anonymous'
+            Name: '',
+            Login: '',
+            Password: '',
+            UserRole: ''
         }
     });
 

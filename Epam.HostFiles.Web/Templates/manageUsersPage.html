@@ -1,0 +1,23 @@
+﻿
+<h2>Manage user roles</h2>
+<hr />
+<div style="padding-left:70px">
+    <% for (var i = 0; i < users.length; i++) { %>
+    <div>
+        <form id="update-user">
+            <fieldset>
+                <span><%=i+1%>)</span>
+                <span style="display:none"><%= users.models[i].attributes.UserInfoId%></span>
+                <input type="text" value="<%= users.models[i].attributes.Login%>" style="margin-left:1%">
+                <select id="rate-selector" style="margin-left:2%">
+                    <% roles.each(function(role) { %>
+                    <option value="<%= role.get('Role') %>"><%= role.get('Role') %></option>
+                    <% }); %>
+                </select>
+                <input id="update-user-button" type="button" value="Update user" style="margin-left:1%">
+            </fieldset>
+        </form>
+    </div>
+    <hr />
+    <% } %>
+</div>

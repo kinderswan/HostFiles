@@ -185,6 +185,7 @@
     <Compile Include="Controllers\Api\HostController.cs" />
     <Compile Include="Controllers\Api\LoginController.cs" />
     <Compile Include="Controllers\Api\UserInfoController.cs" />
+    <Compile Include="Controllers\Api\UserRoleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
@@ -199,6 +200,9 @@
     <Compile Include="Global\Auth\UserProvider.cs" />
     <Compile Include="Global\Helpers\HttpFileResult.cs" />
     <Compile Include="Mapping\EntityMapper.cs" />
+    <Compile Include="Models\DirectoryViewModel.cs" />
+    <Compile Include="Models\DriveViewModel.cs" />
+    <Compile Include="Models\FileViewModel.cs" />
     <Compile Include="Models\UserInfoRegisterModel.cs" />
     <Compile Include="Models\UserInfoViewModel.cs" />
     <Compile Include="Models\UserRoleViewModel.cs" />
@@ -261,9 +265,12 @@
     <Content Include="Scripts\lib\underscore.js" />
     <Content Include="Scripts\lib\underscore.min.js" />
     <Content Include="Scripts\models\directoryInfo.js" />
+    <Content Include="Scripts\models\roleInfo.js" />
     <Content Include="Scripts\models\driveInfo.js" />
     <Content Include="Scripts\models\fileInfo.js" />
     <Content Include="Scripts\models\userInfo.js" />
+    <Content Include="Scripts\views\rolesView.js" />
+    <Content Include="Scripts\views\usersView.js" />
     <Content Include="Scripts\views\driveView.js" />
     <Content Include="Scripts\views\hostView.js" />
     <Content Include="Scripts\views\homeView.js" />
@@ -272,6 +279,8 @@
     <Content Include="Templates\hostPage.html" />
     <Content Include="Templates\homePage.htm" />
     <Content Include="Templates\loginPage.htm" />
+    <Content Include="Templates\manageRolesPage.html" />
+    <Content Include="Templates\manageUsersPage.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
