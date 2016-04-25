@@ -20,6 +20,7 @@ namespace Epam.HostFiles.Web
             bundles.Add(new ScriptBundle("~/bundles/extLibs").Include(
                         "~/Scripts/lib/underscore.js",
                         "~/Scripts/lib/backbone.js",
+                        "~/Scripts/lib/cookie.js",
                         "~/Scripts/lib/toastr.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/localApp").Include(

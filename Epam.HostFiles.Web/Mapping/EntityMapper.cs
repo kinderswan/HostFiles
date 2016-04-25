@@ -14,6 +14,7 @@ namespace Epam.HostFiles.Web.Mapping
         {
             return new UserInfo
             {
+                UserInfoId = vm.UserInfoId,
                 Login = vm.Login,
                 Name = vm.Name,
                 Password = vm.Password,
@@ -57,11 +58,11 @@ namespace Epam.HostFiles.Web.Mapping
                 Password = model.Password
             };
         }
-        public static DirectoryViewModel ToDirectoryViewModel(this string dir)
+        public static DirectoryViewModel ToDirectoryViewModel(this DirectoryInfo dir)
         {
             return new DirectoryViewModel
             {
-                DirectoryName = dir
+                DirectoryName = dir.FullName
             };
         }
         public static FileViewModel ToFileViewModel(this FileInfo file)

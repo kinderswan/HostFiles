@@ -1,4 +1,5 @@
 ﻿using Epam.HostFiles.Services.Interfaces;
+using Epam.HostFiles.Web.Global.Auth;
 using Epam.HostFiles.Web.Mapping;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Web.Http;
 
 namespace Epam.HostFiles.Web.Controllers.Api
 {
+    [HostFilesAuthorize(Roles = "Admin")]
     public class UserRoleController : ApiController
     {
         private readonly IUserRoleService _roleService;

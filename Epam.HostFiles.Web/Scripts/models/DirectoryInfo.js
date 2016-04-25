@@ -1,7 +1,7 @@
 ﻿$(function () {
     appHostFiles.DirectoryInfo = Backbone.Model.extend({
         defaults: {
-            directoryName: ''
+            DirectoryName: ''
         }
     });
 
@@ -9,7 +9,7 @@
         model: window.appHostFiles.DirectoryInfo,
         url: "",
         comparator: function (dir) {
-            return dir.get("directoryName");
+            return dir.get("DirectoryName");
         }
     });
 })

@@ -17,13 +17,13 @@ namespace Epam.HostFiles.IO
                 return Directory.CreateDirectory(path);
             }
             return null;
-            
+
         }
 
-        public IEnumerable<string> GetDirectories(string path)
+        public IEnumerable<DirectoryInfo> GetDirectories(string path)
         {
             //Unauthorized access
-            return Directory.GetDirectories(path);
+            return new DirectoryInfo(path).GetDirectories();
         }
     }
 }

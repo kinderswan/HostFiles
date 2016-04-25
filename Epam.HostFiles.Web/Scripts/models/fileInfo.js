@@ -1,9 +1,9 @@
 ﻿$(function () {
     appHostFiles.FileInfo = Backbone.Model.extend({
         defaults: {
-            fileName: '',
-            path: '',
-            size: ''
+            FileName: '',
+            Path: '',
+            Size: ''
         }
     });
     appHostFiles.FileInfoCollection = Backbone.Collection.extend({

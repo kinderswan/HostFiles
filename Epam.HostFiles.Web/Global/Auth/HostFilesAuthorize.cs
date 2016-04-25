@@ -10,12 +10,7 @@ namespace Epam.HostFiles.Web.Global.Auth
 {
     public class HostFilesAuthorizeAttribute : AuthorizeAttribute
     {
-        private readonly IAuthentication _auth;
-
-        public HostFilesAuthorizeAttribute()
-        {
-            _auth = (IAuthentication)GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IAuthentication));
-        }
+        private readonly IAuthentication _auth = (IAuthentication)GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IAuthentication));
 
         protected override void HandleUnauthorizedRequest(HttpActionContext actionContext)
         {

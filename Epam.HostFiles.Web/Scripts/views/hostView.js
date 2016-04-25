@@ -74,9 +74,9 @@
         },
         renderSuccessFile: function (e, rootDir) {
             appHostFiles.fileCollection.add(new appHostFiles.FileInfo({
-                fileName: e.target[0].files[0].name,
-                path: (rootDir.replace(/\\/g, '/') + "\\" + e.target[0].files[0].name),
-                size: e.target[0].files[0].size
+                FileName: e.target[0].files[0].name,
+                Path: (rootDir.replace(/\\/g, '/') + "\\" + e.target[0].files[0].name),
+                Size: e.target[0].files[0].size
             }));
             $("#content").empty();
             appHostFiles.utility.renderTemplate('hostPage.html', $("#content"), {
@@ -90,7 +90,7 @@
             console.log(rootDir);
             console.log(e.target[0].value);
             appHostFiles.directoryCollection.add(new appHostFiles.DirectoryInfo({
-                directoryName: rootDir +"\\"+ e.target[0].value,
+                DirectoryName: rootDir +"\\"+ e.target[0].value,
             }));
             $("#content").empty();
             var self = this;

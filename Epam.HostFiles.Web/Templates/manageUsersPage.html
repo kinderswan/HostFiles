@@ -4,14 +4,13 @@
 <div style="padding-left:70px">
     <% for (var i = 0; i < users.length; i++) { %>
     <div>
-        <form id="update-user">
+        <form id="update-user" enctype="multipart/form-data">
             <fieldset>
                 <span><%=i+1%>)</span>
-                <span style="display:none"><%= users.models[i].attributes.UserInfoId%></span>
-                <input type="text" value="<%= users.models[i].attributes.Login%>" style="margin-left:1%">
+                <input type="text" value="<%= users.models[i].attributes.Login%>" style="margin-left:1%" readonly="readonly">
                 <select id="rate-selector" style="margin-left:2%">
                     <% roles.each(function(role) { %>
-                    <option value="<%= role.get('Role') %>"><%= role.get('Role') %></option>
+                    <option value="<%= role.get('Role')%>"><%= role.get('Role') %></option>
                     <% }); %>
                 </select>
                 <input id="update-user-button" type="button" value="Update user" style="margin-left:1%">

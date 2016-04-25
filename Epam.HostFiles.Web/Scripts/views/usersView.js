@@ -23,12 +23,26 @@
             })
         },
 
-        updateUserProfile: function(e)
-        {
+        updateUserProfile: function (e) {
             e.preventDefault();
-            var data = new FormData($("#update-user")[0]);
-            console.log($("#update-user"));
-            //var oldUserModel = appHostFiles.usersCollection.where({Login: data})
+            var userModel = appHostFiles.usersCollection.where({ Login: e.target.form[1].value })
+            userModel[0].attributes.UserRole = e.target.form[2].value;
+            userModel[0].attributes.UserRoleId = appHostFiles.rolesCollection.where({ Role: e.target.form[2].value })[0].attributes.UserRoleId;
+
+            $.ajax({
+                url: "api/users/" + userModel[0].attributes.UserInfoId,
+                type: "PUT",
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (data) {
+                    console.log(data);
+                },
+                data: JSON.stringify(userModel[0].attributes),
+                cache: false,
+                contentType: 'application/json; charset=utf-8',
+                processData: false
+            });
         }
 
     })

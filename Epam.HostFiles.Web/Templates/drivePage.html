@@ -6,7 +6,7 @@
         <% for (var i = 0; i < drives.length; i++) { %>
         <div>
             <div class='five columns'>
-                <a href='#files/<%= drives.models[i].attributes._name.replace(/\\/g, "/")%>' class="host-directory"><%= drives.models[i].attributes._name.replace(/\\/g, "/")%></a>
+                <a href='#files/<%= drives.models[i].attributes.DriveName.replace(/\\/g, "/")%>' class="host-directory"><%= drives.models[i].attributes.DriveName.replace(/\\/g, "/")%></a>
             </div>
         </div>
         <% } %>

@@ -1,7 +1,7 @@
 ﻿$(function () {
     appHostFiles.DriveInfo = Backbone.Model.extend({
         defaults: {
-            _name: ''
+            DriveName: ''
         }
     });
 

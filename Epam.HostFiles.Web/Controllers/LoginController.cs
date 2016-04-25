@@ -30,7 +30,7 @@ namespace Epam.HostFiles.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(UserInfoViewModel userRegisterModel, bool isRemember = false)
+        public ActionResult Index(UserInfoViewModel userRegisterModel, bool isRemember = true)
         {
             var userData = userRegisterModel.ToUserInfo();
             if(!ModelState.IsValid)

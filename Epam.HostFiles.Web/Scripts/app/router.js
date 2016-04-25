@@ -3,6 +3,7 @@
         routes: {
             //access
             "login": "login",
+            "logout": "home",
             //files and dirs
             "": "showDrives",
             "files": "showDrives",

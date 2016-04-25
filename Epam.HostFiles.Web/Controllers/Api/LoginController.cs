@@ -23,7 +23,7 @@ namespace Epam.HostFiles.Web.Controllers.Api
 
         [HttpPost]
         [Route("api/login")]
-        public IHttpActionResult Login([FromBody]UserInfoRegisterModel userRegisterModel, bool isRemember = false)
+        public IHttpActionResult Login([FromBody]UserInfoRegisterModel userRegisterModel, bool isRemember = true)
         {
             if (!ModelState.IsValid)
             {
@@ -32,6 +32,7 @@ namespace Epam.HostFiles.Web.Controllers.Api
             var user = _auth.Login(userRegisterModel.Login, userRegisterModel.Password, isRemember);
             if (user != null)
             {
+                var x = _auth.CurrentUser.Identity.Name;
                 return Json(_auth.CurrentUser.Identity.Name);
             }
             return Json(HttpStatusCode.BadRequest);
@@ -42,6 +43,7 @@ namespace Epam.HostFiles.Web.Controllers.Api
         public IHttpActionResult Logout()
         {
             _auth.LogOut();
+            var x = _auth.CurrentUser.Identity.Name;
             return Json(_auth.CurrentUser.Identity.Name);
         }
     }
