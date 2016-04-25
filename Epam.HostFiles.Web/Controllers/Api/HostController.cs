@@ -48,7 +48,7 @@ namespace Epam.HostFiles.Web.Controllers.Api
             return Json(_dirMethods.GetDirectories(drivesPath).Select(x => x.ToDirectoryViewModel()));
         }
 
-        [HostFilesAuthorize(Roles ="Admin")]
+        [HostFilesAuthorize(Roles = "Admin")]
         [HttpPost]
         [Route("api/dirs/{drive}:/{*path}")]
         public IHttpActionResult AddDirectory(string drive, string path)
@@ -57,7 +57,7 @@ namespace Epam.HostFiles.Web.Controllers.Api
             string dirpath = path == null ?
             drive + ":\\" + dirName :
             drive + ":\\" + path.Replace(@"/", @"\") + "\\" + dirName;
-            return Json(_dirMethods.AddDirectory(dirpath));
+            return Json(_dirMethods.AddDirectory(dirpath).ToDirectoryViewModel());
         }
         #endregion
 
@@ -72,7 +72,7 @@ namespace Epam.HostFiles.Web.Controllers.Api
             return Json(_fileMethods.GetFiles(filesPath).Select(x => x.ToFileViewModel()));
         }
 
-                [HttpGet]
+        [HttpGet]
         [Route("api/files/download/{drive}:/{*path}")]
         public IHttpActionResult Download(string drive, string path)
         {
@@ -86,13 +86,18 @@ namespace Epam.HostFiles.Web.Controllers.Api
         [HostFilesAuthorize(Roles = "Admin")]
         [HttpPost]
         [Route("api/files/{drive}:/{*path}")]
-        public async Task UploadFile(string drive, string path)
+        public async Task<IHttpActionResult> UploadFile(string drive, string path)
         {
             var file = HttpContext.Current.Request.Files[0];
+            if (_fileMethods.GetFiles((drive + ":\\" + path).Replace(@"/", @"\")).Any(f => f.Name == file.FileName))
+            {
+                return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.Conflict, "Trying to upload the same file"));
+            }
             string filepath = path == null ?
                 drive + ":\\" + file.FileName :
                 drive + ":\\" + path.Replace(@"/", @"\") + "\\" + file.FileName;
-            await _fileMethods.AddFile(file.InputStream, filepath);
+            
+            return Json((await _fileMethods.AddFile(file.InputStream, filepath)).ToFileViewModel());
         }
         #endregion
     }

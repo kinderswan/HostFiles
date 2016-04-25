@@ -8,6 +8,9 @@
     });
     appHostFiles.FileInfoCollection = Backbone.Collection.extend({
         model: window.appHostFiles.FileInfo,
-        url: ''
+        url: '',
+        comparator: function (file) {
+            return file.get("FileName");
+        }
     });
 })

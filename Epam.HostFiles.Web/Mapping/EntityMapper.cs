@@ -60,10 +60,15 @@ namespace Epam.HostFiles.Web.Mapping
         }
         public static DirectoryViewModel ToDirectoryViewModel(this DirectoryInfo dir)
         {
-            return new DirectoryViewModel
+            if (dir != null)
             {
-                DirectoryName = dir.FullName
-            };
+                return new DirectoryViewModel
+                {
+                    DirectoryName = dir.FullName
+                };
+            }
+            return null;
+
         }
         public static FileViewModel ToFileViewModel(this FileInfo file)
         {

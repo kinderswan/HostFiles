@@ -25,6 +25,7 @@
         <% } %>
     </div>
     <hr/>
+    <% if(<%=registered%>) {%>
     <div>
         <form id="dir-add" name="dirupload" method="post" enctype="multipart/form-data">
             <div>
@@ -49,3 +50,4 @@
         </form> 
     </div>
 </div>
+<% } %>

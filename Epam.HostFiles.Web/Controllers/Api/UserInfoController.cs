@@ -20,7 +20,7 @@ namespace Epam.HostFiles.Web.Controllers.Api
         public UserInfoController(IUserInfoService userService)
         {
             _userService = userService;
-        }
+        }        
 
         [Route("api/users/")]
         public IHttpActionResult GetUsers()

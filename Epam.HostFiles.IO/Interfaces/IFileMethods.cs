@@ -11,7 +11,7 @@ namespace Epam.HostFiles.IO.Interfaces
     public interface IFileMethods
     {
         IEnumerable<FileInfo> GetFiles(string path);
-        Task AddFile(Stream contentStream, string path);
+        Task<FileInfo> AddFile(Stream contentStream, string path);
         Stream DownloadFile(string path);
 
     }

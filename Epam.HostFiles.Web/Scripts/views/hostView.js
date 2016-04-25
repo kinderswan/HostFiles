@@ -2,6 +2,7 @@
     appHostFiles.HostPageView = Backbone.View.extend({
         drive: '',
         path: '',
+        registered: '',
         events: {
             "submit #file-upload": "uploadFile",
             "submit #dir-add": "addDirectory",
@@ -10,6 +11,15 @@
         render: function (drive, path) {
             this.drive = drive;
             this.path = path === null ? "" : path;
+            this.registered = $.ajax({
+                url: "api/registered",
+                success: function (data) {
+                    console.log(data)
+                },
+                error: function () {
+                    console.log(false);
+                }
+            });
             appHostFiles.directoryCollection = new appHostFiles.DirectoryInfoCollection();
             appHostFiles.fileCollection = new appHostFiles.FileInfoCollection();
             appHostFiles.fileCollection.url = "/api/files/" + this.drive + ":/" + this.path;
@@ -32,15 +42,25 @@
         uploadFile: function (e) {
             e.preventDefault();
             var rootDir = this.drive + ":/" + this.path;
+            var self = this;
             var formData = new FormData($("#file-upload")[0]);
             $.ajax({
                 url: "api/files/" + rootDir.replace(/\\/g, ' / '),
                 type: "POST",
-                success: this.renderSuccessFile(e, rootDir),
-                error: function () {
-                    alert(this.url + "error");
-                },
                 data: formData,
+                success: function (data) {
+                    if (data) {
+                        self.renderSuccessFile(data, rootDir);
+                    }
+                },
+                error: function (data) {
+                    if (data.status == 409) {
+                        alert(JSON.parse(data.responseText).Message);
+                    }
+                    else {
+                        alert("You have no permissions to upload new files!");
+                    }
+                },
                 cache: false,
                 contentType: false,
                 processData: false
@@ -57,14 +77,14 @@
                 data: formData,
                 success: function (data) {
                     if (data) {
-                        self.renderSuccessDir(e, rootDir);
+                        self.renderSuccessDir(data, rootDir);
                     }
                     else {
                         alert("Creating directory that already exists!");
                     }
                 },
                 error: function () {
-                    console.log(this.url + "error");
+                    alert("You have no permissions to add new directories!");
                 },
                 cache: false,
                 contentType: false,
@@ -72,11 +92,11 @@
             });
 
         },
-        renderSuccessFile: function (e, rootDir) {
+        renderSuccessFile: function (data, rootDir) {
             appHostFiles.fileCollection.add(new appHostFiles.FileInfo({
-                FileName: e.target[0].files[0].name,
-                Path: (rootDir.replace(/\\/g, '/') + "\\" + e.target[0].files[0].name),
-                Size: e.target[0].files[0].size
+                FileName: data.FileName,
+                Path: data.Path,
+                Size: data.Size
             }));
             $("#content").empty();
             appHostFiles.utility.renderTemplate('hostPage.html', $("#content"), {
@@ -86,14 +106,11 @@
             });
         },
 
-        renderSuccessDir: function (e, rootDir) {
-            console.log(rootDir);
-            console.log(e.target[0].value);
+        renderSuccessDir: function (data, rootDir) {
             appHostFiles.directoryCollection.add(new appHostFiles.DirectoryInfo({
-                DirectoryName: rootDir +"\\"+ e.target[0].value,
+                DirectoryName: data.DirectoryName,
             }));
             $("#content").empty();
-            var self = this;
             appHostFiles.utility.renderTemplate('hostPage.html', $("#content"), {
                 dirs: appHostFiles.directoryCollection,
                 files: appHostFiles.fileCollection,

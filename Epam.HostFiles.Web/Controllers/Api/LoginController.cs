@@ -46,5 +46,13 @@ namespace Epam.HostFiles.Web.Controllers.Api
             var x = _auth.CurrentUser.Identity.Name;
             return Json(_auth.CurrentUser.Identity.Name);
         }
+        [HttpGet]
+        [Route("api/registered")]
+        [HostFilesAuthorize(Roles = "Admin")]
+        public IHttpActionResult IsRegistered()
+        {
+            var x = _auth.CurrentUser.Identity.IsAuthenticated;
+            return Json(_auth.CurrentUser.Identity.IsAuthenticated);
+        }
     }
 }

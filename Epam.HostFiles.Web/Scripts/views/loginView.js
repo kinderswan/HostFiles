@@ -16,7 +16,7 @@
                 contentType: 'application/json'
             })
             .success(function (value) {
-                console.dir(value);
+                appHostFiles.App.navigate('', { trigger: true });
             })
             .error(function () {
                 alert("something going bad");
