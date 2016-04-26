@@ -2,11 +2,12 @@
     var AppRouter = Backbone.Router.extend({
         routes: {
 
-            //access
+            //user
             "login": "login",
             "logout": "logout",
             "register": "register",
             "index": "index",
+            "userProfile": "userProfile",
 
             //files and dirs
             "": "showDrives",
@@ -26,6 +27,7 @@
             this.rolesPageView = new appHostFiles.RolesPageView({ el: $("#content") });
             this.registerPageView = new appHostFiles.RegisterPageView({ el: $("#content") });
             this.indexPageView = new appHostFiles.IndexPageView({ el: $("#content") });
+            this.userProfileView = new appHostFiles.UserProfilePageView({ el: $("#content") });
         },
 
         //users and access functions
@@ -59,7 +61,7 @@
                         appHostFiles.App.navigate("index", { trigger: true });
                     }
                     else {
-                        self.hostPageView.render(drive, path);
+                        self.hostPageView.render(drive, path, data);
                     }
                 }
             })
@@ -75,7 +77,22 @@
                         appHostFiles.App.navigate("index", { trigger: true });
                     }
                     else {
-                        self.drivePageView.render();
+                        self.drivePageView.render(data);
+                    }
+                }
+            })
+        },
+        userProfile: function () {
+            var self = this;
+            $.ajax({
+                url: "api/registeredUser",
+                type: "GET",
+                success: function (data) {
+                    if (data === null) {
+                        appHostFiles.App.navigate("index", { trigger: true });
+                    }
+                    else {
+                        self.userProfileView.render(data);
                     }
                 }
             })

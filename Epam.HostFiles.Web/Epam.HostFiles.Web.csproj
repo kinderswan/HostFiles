@@ -209,10 +209,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\index.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\index.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -270,23 +272,25 @@
     <Content Include="Scripts\models\driveInfo.js" />
     <Content Include="Scripts\models\fileInfo.js" />
     <Content Include="Scripts\models\userInfo.js" />
+    <Content Include="Scripts\views\userProfileView.js" />
     <Content Include="Scripts\views\indexView.js" />
     <Content Include="Scripts\views\registerView.js" />
     <Content Include="Scripts\views\rolesView.js" />
     <Content Include="Scripts\views\usersView.js" />
     <Content Include="Scripts\views\driveView.js" />
     <Content Include="Scripts\views\hostView.js" />
-    <Content Include="Scripts\views\homeView.js" />
+    <Content Include="Scripts\views\logoutView.js" />
     <Content Include="Scripts\views\loginView.js" />
     <Content Include="Templates\userLi.html" />
     <Content Include="Templates\indexPage.html" />
     <Content Include="Templates\drivePage.html" />
     <Content Include="Templates\hostPage.html" />
-    <Content Include="Templates\homePage.html" />
+    <Content Include="Templates\logoutPage.html" />
     <Content Include="Templates\registerPage.html" />
     <Content Include="Templates\loginPage.html" />
     <Content Include="Templates\manageRolesPage.html" />
     <Content Include="Templates\manageUsersPage.html" />
+    <Content Include="Templates\userProfilePage.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

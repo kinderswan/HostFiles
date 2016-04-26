@@ -4,7 +4,7 @@
             "click #logout": "logout"
         },
         render: function () {
-            appHostFiles.utility.renderTemplate("homePage.html", $(this.el));
+            appHostFiles.utility.renderTemplate("logoutPage.html", $(this.el));
         },
         logout: function () {
             $.ajax({
@@ -12,7 +12,8 @@
                 type: "POST"
             })
             .success(function (value) {
-                console.dir(value);
+                $("#navbar").empty();
+                appHostFiles.App.navigate("index", { trigger: true });
             });
             return false;
         }

@@ -21,7 +21,8 @@ namespace Epam.HostFiles.Web.Controllers.Api
         [Route("api/registeredUser")]
         public IHttpActionResult GetRegisteredUser()
         {
-            return Json(_userService.GetUserInfo(_auth.CurrentUser.Identity.Name).ToUserInfoViewModel());
+            var user = _auth.CurrentUser.Identity.Name;
+            return Json(_userService.GetUserInfo(user).ToUserInfoViewModel());
         }
         [HttpPost]
         [Route("api/login")]

@@ -7,13 +7,19 @@
             "submit #dir-add": "addDirectory",
             "click #parent-dir": "navigateToParent"
         },
-        render: function (drive, path) {
-            appHostFiles.utility.renderTemplate('userLi.html', $("#user-nav"));
+        render: function (drive, path, registeredUser) {
+            var regUser = registeredUser;            
             var self = this;
             this.drive = drive;
             this.path = path === null ? "" : path;
+
+            appHostFiles.utility.renderTemplate('userLi.html', $("#user-nav"), {
+                user: regUser
+            });
+
             appHostFiles.directoryCollection = new appHostFiles.DirectoryInfoCollection();
             appHostFiles.fileCollection = new appHostFiles.FileInfoCollection();
+            
             appHostFiles.fileCollection.url = "/api/files/" + this.drive + ":/" + this.path;
             appHostFiles.directoryCollection.url = "/api/dirs/" + this.drive + ":/" + this.path;
             var rootDir = this.drive + ":/" + this.path;
@@ -24,7 +30,8 @@
                             appHostFiles.utility.renderTemplate('hostPage.html', $("#content"), {
                                 dirs: dirs,
                                 files: files,
-                                parentDir: rootDir
+                                parentDir: rootDir,
+                                user: regUser
                             });                            
                         }
                     });

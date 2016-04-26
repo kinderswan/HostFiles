@@ -1,44 +1,45 @@
-﻿
-<h2><%= parentDir%></h2>
-<hr>
-<div style="padding-left:70px">
-    <div id="dirs-info">
-        <div class='five columns'>
-            <a id="parent-dir" href = '#files/<%= parentDir.split("/").slice(0,-1).join("/")%>'>[...]</a>
-        </div>
+﻿<div class="io-view">
+    <h2><%= parentDir%></h2>
+    <hr>
+    <div style="padding-left:70px">
+        <div id="dirs-info">
+            <div class='five columns'>
+                <a id="parent-dir" href='#files/<%= parentDir.split("/").slice(0,-1).join("/")%>'>[...]</a>
+            </div>
 
-        <% for (var i = 0; i < dirs.length; i++) { %>
-        <div>
-            <div class='five columns'>
-                &lt;DIR&gt;&nbsp;<a href='#files/<%= dirs.models[i].attributes.DirectoryName.replace(/\\/g, "/")%>' class="host-directory"><%= dirs.models[i].attributes.DirectoryName.split("\\").pop()%></a>
-            </div>
-        </div>
-        <% } %>
-    </div>
-    <div id="files-info">
-        <% for (var i = 0; i < files.length; i++) { %>
-        <div>
-            <div class='five columns'>
-                &lt;FILE&gt;&nbsp;<a href='api/files/download/<%= files.models[i].attributes.Path.replace(/\\/g, "/")%>' class="host-file"><%= files.models[i].attributes.Path.split("\\").pop()%></a>
-            </div>
-        </div>
-        <% } %>
-    </div>
-    <hr/>
-    <div>
-        <form id="dir-add" name="dirupload" method="post" enctype="multipart/form-data">
+            <% for (var i = 0; i < dirs.length; i++) { %>
             <div>
-                <label for="dirname">Add directory</label>
-                <input name="dirname" type="text" />
+                <div class='five columns'>
+                    &lt;DIR&gt;&nbsp;<a href='#files/<%= dirs.models[i].attributes.DirectoryName.replace(/\\/g, "/")%>' class="host-directory"><%= dirs.models[i].attributes.DirectoryName.split("\\").pop()%></a>
+                </div>
             </div>
+            <% } %>
+        </div>
+        <div id="files-info">
+            <% for (var i = 0; i < files.length; i++) { %>
             <div>
-                <input type="submit" value="Submit" />
+                <div class='five columns'>
+                    &lt;FILE&gt;&nbsp;<a href='api/files/download/<%= files.models[i].attributes.Path.replace(/\\/g, "/")%>' class="host-file"><%= files.models[i].attributes.Path.split("\\").pop()%></a>
+                </div>
             </div>
-        </form>
-    </div>
-    <hr />
-    <div>
-        <form id="file-upload" name="fileupload" method="post" enctype="multipart/form-data">
+            <% } %>
+        </div>
+        <hr />
+        <%if(user.UserRole=='Admin'){%>
+        <div>
+            <form id="dir-add" name="dirupload" method="post" enctype="multipart/form-data">
+                <div>
+                    <label for="dirname">Add directory</label>
+                    <input name="dirname" type="text" />
+                </div>
+                <div>
+                    <input type="submit" value="Submit" />
+                </div>
+            </form>
+        </div>
+        <hr />
+        <div>
+            <form id="file-upload" name="fileupload" method="post" enctype="multipart/form-data">
                 <div>
                     <label for="file">Upload file</label>
                     <input name="file" type="file" />
@@ -46,6 +47,8 @@
                 <div>
                     <input type="submit" value="Submit" />
                 </div>
-        </form> 
+            </form>
+        </div>
+        <%}%>
     </div>
 </div>

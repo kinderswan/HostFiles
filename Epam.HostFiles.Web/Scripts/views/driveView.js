@@ -2,8 +2,11 @@
     appHostFiles.DrivePageView = Backbone.View.extend({
         events: {
         },
-        render: function () {
-            appHostFiles.utility.renderTemplate('userLi.html', $("#user-nav"));
+        render: function (data) {
+
+            appHostFiles.utility.renderTemplate('userLi.html', $("#user-nav"), {
+                user: data
+            });
             appHostFiles.drivesCollection = new appHostFiles.DriveInfoCollection();
             appHostFiles.drivesCollection.fetch({
                 success: function (drives) {
