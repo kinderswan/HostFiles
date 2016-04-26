@@ -1,9 +1,26 @@
 ﻿<div>
     <% for (var i = 0; i < roles.length; i++) { %>
     <div>
-        <div class='five columns'>
-            <span><%= roles.models[i].attributes.Role%></span>
-        </div>
+        <form id="update-role" enctype="multipart/form-data">
+            <fieldset>
+                Role:
+                <input type="text" value="<%= roles.models[i].attributes.Role%>" readonly="readonly" />
+                Description:
+                <input type="text" value="<%= roles.models[i].attributes.RoleDescription%>">
+                <input type="button" id="update-role-button" value="Update role" />
+            </fieldset>
+        </form>
     </div>
     <% } %>
 </div>
+<hr />
+<span>Add new role</span>
+<form id="add-role" enctype="multipart/form-data" method="post">
+    <fieldset>
+        Role:
+        <input type="text" value="Add new role" required="required" name="Role" />
+        Description:
+        <input type="text" value="Add role description" name="RoleDescription">
+        <input type="button" id="add-role-button" value="Add role" />
+    </fieldset>
+</form>

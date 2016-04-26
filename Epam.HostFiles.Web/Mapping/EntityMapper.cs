@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 
 namespace Epam.HostFiles.Web.Mapping
 {
@@ -25,15 +26,16 @@ namespace Epam.HostFiles.Web.Mapping
         {
             return new UserRole
             {
+                UserRoleId = vm.UserRoleId,
                 Role = vm.Role,
                 RoleDescription = vm.RoleDescription
             };
         }
         public static UserInfoViewModel ToUserInfoViewModel(this UserInfo info)
         {
+            if (info == null) return null;
             return new UserInfoViewModel
             {
-                Password = info.Password,
                 UserInfoId = info.UserInfoId,
                 UserRoleId = info.UserRoleId,
                 UserRole = info.UserRole.Role,
@@ -43,6 +45,7 @@ namespace Epam.HostFiles.Web.Mapping
         }
         public static UserRoleViewModel ToUserRoleViewModel(this UserRole role)
         {
+            if (role == null) return null;
             return new UserRoleViewModel
             {
                 Role = role.Role,
@@ -54,20 +57,19 @@ namespace Epam.HostFiles.Web.Mapping
         {
             return new UserInfo
             {
+                Name = model.Name,
                 Login = model.Login,
-                Password = model.Password
+                Password = Crypto.SHA1(model.Password),
+                UserRoleId = 2 //User id
             };
         }
         public static DirectoryViewModel ToDirectoryViewModel(this DirectoryInfo dir)
         {
-            if (dir != null)
+            if (dir == null) return null;
+            return new DirectoryViewModel
             {
-                return new DirectoryViewModel
-                {
-                    DirectoryName = dir.FullName
-                };
-            }
-            return null;
+                DirectoryName = dir.FullName
+            };
 
         }
         public static FileViewModel ToFileViewModel(this FileInfo file)

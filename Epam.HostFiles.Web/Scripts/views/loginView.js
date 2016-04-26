@@ -1,10 +1,10 @@
 ﻿$(function () {
     appHostFiles.LoginPageView = Backbone.View.extend({
         events: {
-            "click #login": "login"
+            "click #login-button": "login"
         },
         render: function () {
-            appHostFiles.utility.renderTemplate("loginPage.htm", $(this.el));
+            appHostFiles.utility.renderTemplate("loginPage.html", $(this.el));
         },
         login: function () {
             var data = appHostFiles.utility.serializeObject($("#loginPageForm"));

@@ -2,24 +2,16 @@
     appHostFiles.HostPageView = Backbone.View.extend({
         drive: '',
         path: '',
-        registered: '',
         events: {
             "submit #file-upload": "uploadFile",
             "submit #dir-add": "addDirectory",
             "click #parent-dir": "navigateToParent"
         },
         render: function (drive, path) {
+            appHostFiles.utility.renderTemplate('userLi.html', $("#user-nav"));
+            var self = this;
             this.drive = drive;
             this.path = path === null ? "" : path;
-            this.registered = $.ajax({
-                url: "api/registered",
-                success: function (data) {
-                    console.log(data)
-                },
-                error: function () {
-                    console.log(false);
-                }
-            });
             appHostFiles.directoryCollection = new appHostFiles.DirectoryInfoCollection();
             appHostFiles.fileCollection = new appHostFiles.FileInfoCollection();
             appHostFiles.fileCollection.url = "/api/files/" + this.drive + ":/" + this.path;
@@ -33,7 +25,7 @@
                                 dirs: dirs,
                                 files: files,
                                 parentDir: rootDir
-                            });
+                            });                            
                         }
                     });
                 }

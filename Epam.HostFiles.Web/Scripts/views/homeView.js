@@ -1,10 +1,10 @@
 ﻿$(function () {
-    appHostFiles.HomePageView = Backbone.View.extend({
+    appHostFiles.LogoutPageView = Backbone.View.extend({
         events: {
             "click #logout": "logout"
         },
         render: function () {
-            appHostFiles.utility.renderTemplate("homePage.htm", $(this.el));
+            appHostFiles.utility.renderTemplate("homePage.html", $(this.el));
         },
         logout: function () {
             $.ajax({

@@ -34,9 +34,9 @@ namespace Epam.HostFiles.Web.Global.Auth
             }
         }
 
-        public UserInfo Login(string login, string password, bool isPersistent)
+        public UserInfo Login(string login, string password, bool isPersistent = true)
         {
-            var retUser = _userInfoService.GetUserInfo(login, Crypto.SHA1(password));
+            var retUser = _userInfoService.GetUserInfo(login, password);
             if (retUser != null)
             {
                 CreateCookie(login, isPersistent);

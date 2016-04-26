@@ -2,9 +2,6 @@
 using Epam.HostFiles.Web.Global.Auth;
 using Epam.HostFiles.Web.Mapping;
 using Epam.HostFiles.Web.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -20,16 +17,18 @@ namespace Epam.HostFiles.Web.Controllers.Api
             _auth = auth;
             _userService = userService;
         }
-
+        [HttpGet]
+        [Route("api/registeredUser")]
+        public IHttpActionResult GetRegisteredUser()
+        {
+            return Json(_userService.GetUserInfo(_auth.CurrentUser.Identity.Name).ToUserInfoViewModel());
+        }
         [HttpPost]
         [Route("api/login")]
-        public IHttpActionResult Login([FromBody]UserInfoRegisterModel userRegisterModel, bool isRemember = true)
+        public IHttpActionResult Login(UserInfoRegisterModel userRegisterModel)
         {
-            if (!ModelState.IsValid)
-            {
-                return Json(HttpStatusCode.BadRequest);
-            }
-            var user = _auth.Login(userRegisterModel.Login, userRegisterModel.Password, isRemember);
+            var logModel = userRegisterModel.ToUserInfo();
+            var user = _auth.Login(logModel.Login, logModel.Password, true);
             if (user != null)
             {
                 var x = _auth.CurrentUser.Identity.Name;
@@ -46,13 +45,19 @@ namespace Epam.HostFiles.Web.Controllers.Api
             var x = _auth.CurrentUser.Identity.Name;
             return Json(_auth.CurrentUser.Identity.Name);
         }
-        [HttpGet]
-        [Route("api/registered")]
-        [HostFilesAuthorize(Roles = "Admin")]
-        public IHttpActionResult IsRegistered()
+
+        [HttpPost]
+        [Route("api/register")]
+        public IHttpActionResult Register(UserInfoRegisterModel regModel)
         {
-            var x = _auth.CurrentUser.Identity.IsAuthenticated;
-            return Json(_auth.CurrentUser.Identity.IsAuthenticated);
+            var regUser = regModel.ToUserInfo();
+            if(_userService.GetUserInfo(regUser.Login)!=null)
+            {
+                return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.Conflict, "Sorry, but user with the same login exists"));
+            }
+            _userService.CreateUser(regUser);
+            _userService.SaveUserInfo();
+            return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK));
         }
     }
 }

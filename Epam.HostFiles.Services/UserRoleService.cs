@@ -21,9 +21,15 @@ namespace Epam.HostFiles.Services
             _unitOfWork = unitOfWork;
         }
 
-        public void CreateRole(UserRole userRole)
+        public UserRole CreateRole(UserRole userRole)
         {
-            _userRoleRepository.Add(userRole);
+            if(!_userRoleRepository.GetMany(r=>r.Role==userRole.Role).Any())
+            {
+                _userRoleRepository.Add(userRole);
+                return userRole;
+            }
+            return null;           
+
         }
 
         public void DeleteRole(int id)
@@ -45,7 +51,6 @@ namespace Epam.HostFiles.Services
         {
             _userRoleRepository.Update(userRole);
         }
-
         public void SaveUserRole()
         {
             _unitOfWork.Commit();

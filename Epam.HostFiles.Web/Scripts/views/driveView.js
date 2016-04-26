@@ -3,6 +3,7 @@
         events: {
         },
         render: function () {
+            appHostFiles.utility.renderTemplate('userLi.html', $("#user-nav"));
             appHostFiles.drivesCollection = new appHostFiles.DriveInfoCollection();
             appHostFiles.drivesCollection.fetch({
                 success: function (drives) {
