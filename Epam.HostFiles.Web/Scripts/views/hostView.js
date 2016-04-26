@@ -13,6 +13,7 @@
             this.drive = drive;
             this.path = path === null ? "" : path;
 
+            $("#user-nav").empty();
             appHostFiles.utility.renderTemplate('userLi.html', $("#user-nav"), {
                 user: regUser
             });

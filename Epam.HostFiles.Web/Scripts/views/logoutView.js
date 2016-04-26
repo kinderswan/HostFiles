@@ -13,7 +13,7 @@
             })
             .success(function (value) {
                 $("#navbar").empty();
-                appHostFiles.App.navigate("index", { trigger: true });
+                window.location = '';
             });
             return false;
         }

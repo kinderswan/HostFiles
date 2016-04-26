@@ -17,6 +17,8 @@
             })
             .success(function (value) {
                 appHostFiles.App.navigate('', { trigger: true });
+                Backbone.history.stop();
+                Backbone.history.start();
             })
             .error(function () {
                 alert("something going bad");

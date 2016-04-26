@@ -3,7 +3,7 @@
         events: {
         },
         render: function (data) {
-
+            $("#user-nav").empty();
             appHostFiles.utility.renderTemplate('userLi.html', $("#user-nav"), {
                 user: data
             });
