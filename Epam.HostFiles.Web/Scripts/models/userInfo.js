@@ -1,15 +1,15 @@
 ﻿$(function () {
-    appHostFiles.UserInfo = Backbone.Model.Extend({
+    appHostFiles.UserInfo = Backbone.Model.extend({
         defaults: {
-            name: '',
-            login: '',
-            password: '',
-            role: 'anonymous'
+            Name: '',
+            Login: '',
+            Password: '',
+            UserRole: ''
         }
-    })
+    });
 
     appHostFiles.UserInfoCollection = Backbone.Collection.extend({
         model: window.appHostFiles.UserInfo,
         url: 'api/users'
-    })
+    });
 })

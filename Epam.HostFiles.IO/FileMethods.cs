@@ -12,13 +12,13 @@ namespace Epam.HostFiles.IO
     public class FileMethods : IFileMethods
     {
 
-        public async Task AddFile(Stream contentStream, string path)
+        public async Task<FileInfo> AddFile(Stream contentStream, string path)
         {
             using (Stream file = File.Create(path))
             {
                await CopyStream(contentStream, file);
             }
-            
+            return new FileInfo(path);
         }
 
         public Stream DownloadFile(string path)

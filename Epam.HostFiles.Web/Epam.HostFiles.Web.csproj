@@ -175,10 +175,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\collections\" />
-    <Folder Include="Scripts\components\" />
-    <Folder Include="Scripts\routers\" />
-    <Folder Include="Scripts\views\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -186,11 +182,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\Api\DirectoryController.cs" />
+    <Compile Include="Controllers\Api\HostController.cs" />
+    <Compile Include="Controllers\Api\LoginController.cs" />
     <Compile Include="Controllers\Api\UserInfoController.cs" />
+    <Compile Include="Controllers\Api\UserRoleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -201,23 +198,31 @@
     <Compile Include="Global\Auth\IUserProvider.cs" />
     <Compile Include="Global\Auth\UserIdentity.cs" />
     <Compile Include="Global\Auth\UserProvider.cs" />
+    <Compile Include="Global\Helpers\HttpFileResult.cs" />
     <Compile Include="Mapping\EntityMapper.cs" />
+    <Compile Include="Models\DirectoryViewModel.cs" />
+    <Compile Include="Models\DriveViewModel.cs" />
+    <Compile Include="Models\FileViewModel.cs" />
+    <Compile Include="Models\UserInfoRegisterModel.cs" />
     <Compile Include="Models\UserInfoViewModel.cs" />
     <Compile Include="Models\UserRoleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\index.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\index.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\app\router.js" />
+    <Content Include="Scripts\app\utility.js" />
     <Content Include="Scripts\lib\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\lib\ai.0.15.0-build58334.min.js" />
-    <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\main.js" />
     <Content Include="Scripts\lib\backbone.js" />
     <Content Include="Scripts\lib\Backbone.ModalDialog.js" />
     <Content Include="Scripts\lib\backbone.min.js" />
@@ -237,9 +242,21 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\lib\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\lib\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\lib\cookie.js" />
     <Content Include="Scripts\lib\jquery-2.2.3.js" />
     <Content Include="Scripts\lib\jquery-2.2.3.min.js" />
+    <Content Include="Scripts\lib\jquery-ui-1.8.11.js" />
+    <Content Include="Scripts\lib\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\lib\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\lib\jquery.unobtrusive-ajax.min.js" />
+    <None Include="Scripts\lib\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\lib\jquery.validate.js" />
+    <Content Include="Scripts\lib\jquery.validate.min.js" />
+    <Content Include="Scripts\lib\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\lib\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\lib\json2.js" />
+    <Content Include="Scripts\lib\knockout-2.0.0.debug.js" />
+    <Content Include="Scripts\lib\knockout-2.0.0.js" />
     <Content Include="Scripts\lib\modernizr-2.6.2.js" />
     <Content Include="Scripts\lib\modernizr-2.8.3.js" />
     <Content Include="Scripts\lib\r.js" />
@@ -250,7 +267,32 @@
     <Content Include="Scripts\lib\respond.min.js" />
     <Content Include="Scripts\lib\underscore.js" />
     <Content Include="Scripts\lib\underscore.min.js" />
+    <Content Include="Scripts\models\directoryInfo.js" />
+    <Content Include="Scripts\models\roleInfo.js" />
+    <Content Include="Scripts\models\driveInfo.js" />
+    <Content Include="Scripts\models\fileInfo.js" />
     <Content Include="Scripts\models\userInfo.js" />
+    <Content Include="Scripts\views\adminView.js" />
+    <Content Include="Scripts\views\userProfileView.js" />
+    <Content Include="Scripts\views\indexView.js" />
+    <Content Include="Scripts\views\registerView.js" />
+    <Content Include="Scripts\views\rolesView.js" />
+    <Content Include="Scripts\views\usersView.js" />
+    <Content Include="Scripts\views\driveView.js" />
+    <Content Include="Scripts\views\hostView.js" />
+    <Content Include="Scripts\views\logoutView.js" />
+    <Content Include="Scripts\views\loginView.js" />
+    <Content Include="Templates\adminPage.html" />
+    <Content Include="Templates\userLi.html" />
+    <Content Include="Templates\indexPage.html" />
+    <Content Include="Templates\drivePage.html" />
+    <Content Include="Templates\hostPage.html" />
+    <Content Include="Templates\logoutPage.html" />
+    <Content Include="Templates\registerPage.html" />
+    <Content Include="Templates\loginPage.html" />
+    <Content Include="Templates\manageRolesPage.html" />
+    <Content Include="Templates\manageUsersPage.html" />
+    <Content Include="Templates\userProfilePage.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

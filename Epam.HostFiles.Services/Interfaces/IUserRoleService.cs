@@ -10,7 +10,8 @@ namespace Epam.HostFiles.Services.Interfaces
     public interface IUserRoleService
     {
         UserRole GetUserRole(int id);
-        void CreateRole(UserRole userRole);
+        IEnumerable<UserRole> GetUserRoles();
+        UserRole CreateRole(UserRole userRole);
         void UpdateRole(UserRole userRole);
         void DeleteRole(int id);
         void SaveUserRole();

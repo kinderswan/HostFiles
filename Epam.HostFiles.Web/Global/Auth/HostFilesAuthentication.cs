@@ -19,11 +19,13 @@ namespace Epam.HostFiles.Web.Global.Auth
 
         public HttpContext HttpContext { get; set; }
 
+        public string InstanceProperty { get; set; }
+
         public HostFilesAuthentication(IUserInfoService userService)
         {
             _userInfoService = userService;
         }
-        
+
         public IPrincipal CurrentUser
         {
             get
@@ -32,10 +34,10 @@ namespace Epam.HostFiles.Web.Global.Auth
             }
         }
 
-        public UserInfo Login(string login, string password, bool isPersistent)
+        public UserInfo Login(string login, string password, bool isPersistent = true)
         {
-            var retUser = _userInfoService.GetUserInfo(login, Crypto.SHA1(password));
-            if(retUser!=null)
+            var retUser = _userInfoService.GetUserInfo(login, password);
+            if (retUser != null)
             {
                 CreateCookie(login, isPersistent);
             }
@@ -46,6 +48,10 @@ namespace Epam.HostFiles.Web.Global.Auth
         public void LogOut()
         {
             var httpCookie = HttpContext.Response.Cookies[CookieName];
+            if (httpCookie != null)
+            {
+                httpCookie.Value = string.Empty;
+            }
         }
 
         private void CreateCookie(string email, bool isPersistent = false)
@@ -64,26 +70,22 @@ namespace Epam.HostFiles.Web.Global.Auth
 
         private IPrincipal CurrUser()
         {
-            if (_currentUser == null)
+            try
             {
-                try
+                HttpCookie authCookie = HttpContext.Request.Cookies.Get(CookieName);
+                if (authCookie != null && !string.IsNullOrEmpty(authCookie.Value))
                 {
-                    HttpCookie authCookie = HttpContext.Request.Cookies.Get(CookieName);
-                    if (authCookie != null && !string.IsNullOrEmpty(authCookie.Value))
-                    {
-                        var ticket = FormsAuthentication.Decrypt(authCookie.Value);
-                        _currentUser = new UserProvider(ticket.Name, _userInfoService);
-                    }
-                    else
-                    {
-                        _currentUser = new UserProvider(null, null);
-                    }
+                    var ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                    _currentUser = new UserProvider(ticket.Name, _userInfoService);
                 }
-                catch
+                else
                 {
                     _currentUser = new UserProvider(null, null);
                 }
-
+            }
+            catch
+            {
+                _currentUser = new UserProvider(null, null);
             }
             return _currentUser;
         }

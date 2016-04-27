@@ -25,9 +25,10 @@ namespace Epam.HostFiles.Web
             container.RegisterType<IUserRoleRepository, UserRoleRepository>();
             container.RegisterType<IUserInfoRepository, UserInfoRepository>();
             container.RegisterType<IUnitOfWork, UnitOfWork>();
-            container.RegisterType<IDbFactory, DbFactory>();
+            container.RegisterType<IDbFactory, DbFactory>(new ContainerControlledLifetimeManager());
             container.RegisterType<IFileMethods, FileMethods>();
             container.RegisterType<IDirectoryMethods, DirectoryMethods>();
+            container.RegisterType<IDriveMethods, DriveMethods>();
             container.RegisterType<IAuthentication, HostFilesAuthentication>(new PerThreadLifetimeManager());
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));

@@ -58,7 +58,7 @@ namespace Epam.HostFiles.Services
 
         public UserInfo GetUserInfo(string login)
         {
-            return _userInfoRepository.Get(u => string.Compare(u.Login, login, false) == 0);
+            return _userInfoRepository.Get(u => u.Login==login);
         }
     }
 }

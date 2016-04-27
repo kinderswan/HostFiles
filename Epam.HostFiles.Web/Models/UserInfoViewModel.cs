@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Epam.HostFiles.Web.Model.Models
+namespace Epam.HostFiles.Web.Models
 {
     public class UserInfoViewModel
     {
@@ -13,7 +13,8 @@ namespace Epam.HostFiles.Web.Model.Models
         public int UserInfoId { get; set; }
         public string Name { get; set; }
         public string Login { get; set; }
-        public string Password { get; set; }    
+        public string Password { get; set; }
+        public string UserRole { get; set; }
         [Required]    
         public int UserRoleId { get; set; }
     }

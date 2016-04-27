@@ -12,12 +12,18 @@ namespace Epam.HostFiles.IO
     {
         public DirectoryInfo AddDirectory(string path)
         {
-            return Directory.CreateDirectory(path);
+            if (!Directory.Exists(path))
+            {
+                return Directory.CreateDirectory(path);
+            }
+            return null;
+
         }
 
-        public IEnumerable<string> GetDirectories(string path)
+        public IEnumerable<DirectoryInfo> GetDirectories(string path)
         {
-            return Directory.GetDirectories(path);
+            //Unauthorized access
+            return new DirectoryInfo(path).GetDirectories();
         }
     }
 }

@@ -6,30 +6,18 @@
 
 {
     <div class="container">
-        @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-signin" }))
-        {
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-            if ((bool?)TempData["RegYes"] == true)
-            {
-                <h5 class="form-signin-heading">You have been succesfully registered.</h5>
-            }
-            <h2 class="form-signin-heading">Please sign in</h2>
-                @Html.LabelFor(model => model.Login, new { @class = "sr-only" })
-                @Html.TextBoxFor(model => model.Login, new { @class = "form-control", @placeholder = "Email address", @required = "required", @autofocus = "autofocus" })
-                @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
-
-                @Html.LabelFor(model => model.Password, new { @class = "sr-only" })
-                @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Password", @required = "required", @autofocus = "autofocus" })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-
-                <div class="checkbox">
+<form action="/Login" class="form-signin" method="post"><input name="__RequestVerificationToken" type="hidden" value="QdnPQKJ-fam4a4_TbT3DUwawPa0-F11He7xVKlWCuAFPd15p2yaqFYsd_ICSuuyXmfZ8-tWGApiIDgYvp2RggTB2L4kBZpFnJdNSUGK96401" />            <h2 class="form-signin-heading">Please sign in</h2>
+<label class="sr-only" for="Login">Login</label><input autofocus="autofocus" class="form-control" id="Login" name="Login" placeholder="Email address" required="required" type="text" value="" /><span class="field-validation-valid text-danger" data-valmsg-for="Login" data-valmsg-replace="true"></span><label class="sr-only" for="Password">Password</label><input autofocus="autofocus" class="form-control" id="Password" name="Password" placeholder="Password" required="required" type="password" /><span class="field-validation-valid text-danger" data-valmsg-for="Password" data-valmsg-replace="true"></span>                <div class="checkbox">
                     <label>
-                        @Html.CheckBox("isRemember", true) Remember me
+                        <input checked="checked" id="isRemember" name="isRemember" type="checkbox" value="true" /><input name="isRemember" type="hidden" value="false" /> Remember me
                     </label>
                 </div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        }
+</form>    </div>
+}
+        <hr />
+        <footer>
+            <p>&copy; 2016 - My ASP.NET Application</p>
+        </footer>
     </div>
 }

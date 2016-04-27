@@ -41,8 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DirectoryMethods.cs" />
+    <Compile Include="DriveMethods.cs" />
     <Compile Include="FileMethods.cs" />
     <Compile Include="Interfaces\IDirectoryMethods.cs" />
+    <Compile Include="Interfaces\IDriveMethods.cs" />
     <Compile Include="Interfaces\IFileMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
