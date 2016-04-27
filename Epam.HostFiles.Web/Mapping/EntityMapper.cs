@@ -18,7 +18,6 @@ namespace Epam.HostFiles.Web.Mapping
                 UserInfoId = vm.UserInfoId,
                 Login = vm.Login,
                 Name = vm.Name,
-                Password = vm.Password,
                 UserRoleId = vm.UserRoleId
             };
         }

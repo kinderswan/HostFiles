@@ -3,7 +3,10 @@
         events: {
             "click #update-user-button": "updateUserProfile"
         },
-        render: function (id) {
+        render: function (id, user) {
+            appHostFiles.utility.renderTemplate("userLi.html", $('#user-nav'), {
+                user: user
+            });
             appHostFiles.usersCollection = new appHostFiles.UserInfoCollection();
             appHostFiles.rolesCollection = new appHostFiles.RoleInfoCollection();
             if (id !== null) {
@@ -25,6 +28,7 @@
 
         updateUserProfile: function (e) {
             e.preventDefault();
+            console.log(e);
             var userModel = appHostFiles.usersCollection.where({ Login: e.target.form[1].value })
             userModel[0].attributes.UserRole = e.target.form[2].value;
             userModel[0].attributes.UserRoleId = appHostFiles.rolesCollection.where({ Role: e.target.form[2].value })[0].attributes.UserRoleId;

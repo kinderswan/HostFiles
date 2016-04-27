@@ -272,6 +272,7 @@
     <Content Include="Scripts\models\driveInfo.js" />
     <Content Include="Scripts\models\fileInfo.js" />
     <Content Include="Scripts\models\userInfo.js" />
+    <Content Include="Scripts\views\adminView.js" />
     <Content Include="Scripts\views\userProfileView.js" />
     <Content Include="Scripts\views\indexView.js" />
     <Content Include="Scripts\views\registerView.js" />
@@ -281,6 +282,7 @@
     <Content Include="Scripts\views\hostView.js" />
     <Content Include="Scripts\views\logoutView.js" />
     <Content Include="Scripts\views\loginView.js" />
+    <Content Include="Templates\adminPage.html" />
     <Content Include="Templates\userLi.html" />
     <Content Include="Templates\indexPage.html" />
     <Content Include="Templates\drivePage.html" />

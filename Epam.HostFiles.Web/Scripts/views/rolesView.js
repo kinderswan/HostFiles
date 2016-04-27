@@ -1,10 +1,15 @@
 ﻿$(function () {
     appHostFiles.RolesPageView = Backbone.View.extend({
+        registeredUser:'',
         events: {
             "click #update-role-button": "updateUserRole",
             "click #add-role-button": "addUserRole"
         },
-        render: function (id) {
+        render: function (id, user) {
+            this.registeredUser = user;
+            appHostFiles.utility.renderTemplate("userLi.html", $('#user-nav'), {
+                user: user
+            });
             appHostFiles.rolesCollection = new appHostFiles.RoleInfoCollection();
             if (id !== null) {
                 appHostFiles.rolesCollection.url = "api/roles/" + id;
@@ -19,7 +24,12 @@
         },
         updateUserRole: function (e) {
             e.preventDefault();
+            var self = this;
+            appHostFiles.utility.renderTemplate("userLi.html", $('#user-nav'), {
+                user: self.registeredUser
+            });
             var roleModel = appHostFiles.rolesCollection.where({ Role: e.target.form[1].value })
+            console.log(roleModel);
             roleModel[0].attributes.RoleDescription = e.target.form[2].value;
             $.ajax({
                 url: "api/roles/" + roleModel[0].attributes.UserRoleId,
@@ -38,7 +48,12 @@
         },
         addUserRole: function (e) {
             e.preventDefault();
+            var self = this;
+            appHostFiles.utility.renderTemplate("userLi.html", $('#user-nav'), {
+                user: self.registeredUser
+            });
             var formData = appHostFiles.utility.serializeObject($('#add-role'));
+            console.log(formData);
             var self = this;
             $.ajax({
                 url: "api/roles/",

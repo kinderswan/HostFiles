@@ -89,13 +89,13 @@ namespace Epam.HostFiles.Web.Controllers.Api
         public async Task<IHttpActionResult> UploadFile(string drive, string path)
         {
             var file = HttpContext.Current.Request.Files[0];
-            if (_fileMethods.GetFiles((drive + ":\\" + path).Replace(@"/", @"\")).Any(f => f.Name == file.FileName))
+            if (_fileMethods.GetFiles((drive + ":\\" + path).Replace(@"/", @"\")).Any(f => f.Name == Path.GetFileName(file.FileName)))
             {
                 return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.Conflict, "Trying to upload the same file"));
             }
             string filepath = path == null ?
-                drive + ":\\" + file.FileName :
-                drive + ":\\" + path.Replace(@"/", @"\") + "\\" + file.FileName;
+                drive + ":\\" + Path.GetFileName(file.FileName) :
+                drive + ":\\" + path.Replace(@"/", @"\") + "\\" + Path.GetFileName(file.FileName);
             
             return Json((await _fileMethods.AddFile(file.InputStream, filepath)).ToFileViewModel());
         }

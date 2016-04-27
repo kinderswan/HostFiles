@@ -8,6 +8,7 @@
             "register": "register",
             "index": "index",
             "userProfile": "userProfile",
+            "admin": "adminView",
 
             //files and dirs
             "": "showDrives",
@@ -28,6 +29,7 @@
             this.registerPageView = new appHostFiles.RegisterPageView({ el: $("#content") });
             this.indexPageView = new appHostFiles.IndexPageView({ el: $("#content") });
             this.userProfileView = new appHostFiles.UserProfilePageView({ el: $("#content") });
+            this.adminPageView = new appHostFiles.AdminPageView({ el: $("#content") });
         },
 
         //users and access functions
@@ -44,10 +46,34 @@
             this.registerPageView.render();
         },
         manageUsers: function (id) {
-            this.usersPageView.render(id);
+            var self = this;
+            $.ajax({
+                url: "api/registeredUser",
+                type: "GET",
+                success: function (data) {
+                    if (data === null) {
+                        appHostFiles.App.navigate("index", { trigger: true });
+                    }
+                    else {
+                        self.usersPageView.render(id, data);
+                    }
+                }
+            })
         },
         manageRoles: function (id) {
-            this.rolesPageView.render(id);
+            var self = this;
+            $.ajax({
+                url: "api/registeredUser",
+                type: "GET",
+                success: function (data) {
+                    if (data === null) {
+                        appHostFiles.App.navigate("index", { trigger: true });
+                    }
+                    else {
+                        self.rolesPageView.render(id, data);
+                    }
+                }
+            });
         },
 
         //IO functions
@@ -96,7 +122,23 @@
                     }
                 }
             })
-        }
+        },
+        adminView: function () {
+            var self = this;
+            $.ajax({
+                url: "api/registeredUser",
+                type: "GET",
+                success: function (data) {
+                    console.log(data);
+                    if (data === null) {
+                        appHostFiles.App.navigate("index", { trigger: true });
+                    }
+                    else {
+                        self.adminPageView.render(data);
+                    }
+                }
+            })
+        },
     });
     appHostFiles.App = new AppRouter();
     Backbone.history.start();

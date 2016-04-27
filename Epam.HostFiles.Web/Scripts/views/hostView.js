@@ -2,20 +2,21 @@
     appHostFiles.HostPageView = Backbone.View.extend({
         drive: '',
         path: '',
+        registeredUser: '',
         events: {
             "submit #file-upload": "uploadFile",
             "submit #dir-add": "addDirectory",
             "click #parent-dir": "navigateToParent"
         },
         render: function (drive, path, registeredUser) {
-            var regUser = registeredUser;            
+            this.registeredUser = registeredUser;            
             var self = this;
             this.drive = drive;
             this.path = path === null ? "" : path;
 
             $("#user-nav").empty();
             appHostFiles.utility.renderTemplate('userLi.html', $("#user-nav"), {
-                user: regUser
+                user: this.registeredUser
             });
 
             appHostFiles.directoryCollection = new appHostFiles.DirectoryInfoCollection();
@@ -32,7 +33,7 @@
                                 dirs: dirs,
                                 files: files,
                                 parentDir: rootDir,
-                                user: regUser
+                                user: self.registeredUser
                             });                            
                         }
                     });
@@ -50,7 +51,7 @@
                 data: formData,
                 success: function (data) {
                     if (data) {
-                        self.renderSuccessFile(data, rootDir);
+                        self.renderSuccessFile(data, rootDir, self.registeredUser);
                     }
                 },
                 error: function (data) {
@@ -77,7 +78,7 @@
                 data: formData,
                 success: function (data) {
                     if (data) {
-                        self.renderSuccessDir(data, rootDir);
+                        self.renderSuccessDir(data, rootDir, self.registeredUser);
                     }
                     else {
                         alert("Creating directory that already exists!");
@@ -92,7 +93,8 @@
             });
 
         },
-        renderSuccessFile: function (data, rootDir) {
+
+        renderSuccessFile: function (data, rootDir, user) {
             appHostFiles.fileCollection.add(new appHostFiles.FileInfo({
                 FileName: data.FileName,
                 Path: data.Path,
@@ -102,11 +104,12 @@
             appHostFiles.utility.renderTemplate('hostPage.html', $("#content"), {
                 dirs: appHostFiles.directoryCollection,
                 files: appHostFiles.fileCollection,
-                parentDir: rootDir
+                parentDir: rootDir,
+                user:user
             });
         },
 
-        renderSuccessDir: function (data, rootDir) {
+        renderSuccessDir: function (data, rootDir, user) {
             appHostFiles.directoryCollection.add(new appHostFiles.DirectoryInfo({
                 DirectoryName: data.DirectoryName,
             }));
@@ -114,7 +117,8 @@
             appHostFiles.utility.renderTemplate('hostPage.html', $("#content"), {
                 dirs: appHostFiles.directoryCollection,
                 files: appHostFiles.fileCollection,
-                parentDir: rootDir
+                parentDir: rootDir,
+                user: user
             });
         },
 
