@@ -17,6 +17,7 @@ namespace Epam.HostFiles.Web.Mapping
             {
                 UserInfoId = vm.UserInfoId,
                 Login = vm.Login,
+                Password = vm.Password,
                 Name = vm.Name,
                 UserRoleId = vm.UserRoleId
             };
@@ -39,7 +40,8 @@ namespace Epam.HostFiles.Web.Mapping
                 UserRoleId = info.UserRoleId,
                 UserRole = info.UserRole.Role,
                 Login = info.Login,
-                Name = info.Name
+                Name = info.Name,
+                Password = info.Password
             };
         }
         public static UserRoleViewModel ToUserRoleViewModel(this UserRole role)

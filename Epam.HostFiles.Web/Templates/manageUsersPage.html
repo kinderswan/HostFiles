@@ -56,12 +56,13 @@
                                     <input type="text" class="form-control" readonly="readonly" value="<%= users.models[i].attributes.Login%>" />
                                 </div>
                                 <div class="col-sm-3 list-group-item" style="border-radius:4px; margin:1px;height:56px">
-                                    <select class="form-control" id="rate-selector">
-                                        <%roles.remove(roles.where({Role:users.models[i].attributes.UserRole}))%>
+                                    <script type="text/javascript">
+                                        $("#role-selector<%=i%> option[value='" + "<%= users.models[i].attributes.UserRole%>" + "']").attr("selected", "selected")
+                                    </script>
+                                    <select class="form-control" id="role-selector<%=i%>">
                                         <% roles.each(function(role) { %>
-                                        <option value="<%= role.get('Role')%>" selected><%= role.get('Role')%></option>
+                                        <option value="<%= role.get('Role')%>"><%= role.get('Role')%></option>
                                         <% }); %>
-                                        <option value="<%= users.models[i].attributes.UserRole%>" selected="selected"><%= users.models[i].attributes.UserRole%></option>
                                     </select>
                                 </div>
                                 <div class="col-sm-2 list-group-item" style="border-radius:4px;margin:1px;height:56px">
