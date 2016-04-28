@@ -15,7 +15,7 @@ namespace Epam.HostFiles.Web.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            ViewBag.Title = "Host files";
 
             return View();
         }

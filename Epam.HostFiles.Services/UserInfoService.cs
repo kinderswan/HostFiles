@@ -1,9 +1,5 @@
 ﻿using Epam.HostFiles.Services.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Epam.HostFiles.Model.Models;
 using Epam.HostFiles.Core.Repository.Interfaces;
 using Epam.HostFiles.Core.Infrastructure.Interfaces;

@@ -1,8 +1,8 @@
 ﻿using Epam.HostFiles.IO.Interfaces;
+using Epam.HostFiles.Web.Global.Auth;
 using Epam.HostFiles.Web.Global.Helpers;
-using Newtonsoft.Json;
+using Epam.HostFiles.Web.Mapping;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -10,8 +10,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using Epam.HostFiles.Web.Mapping;
-using Epam.HostFiles.Web.Global.Auth;
 
 namespace Epam.HostFiles.Web.Controllers.Api
 {
@@ -42,10 +40,17 @@ namespace Epam.HostFiles.Web.Controllers.Api
         #region directories
         [HttpGet]
         [Route("api/dirs/{drive}:/{*path}")]
-        public IHttpActionResult GetDrives(string drive, string path)
+        public IHttpActionResult GetDirectories(string drive, string path)
         {
             var drivesPath = (drive + ":\\" + path).Replace(@"/", @"\");
-            return Json(_dirMethods.GetDirectories(drivesPath).Select(x => x.ToDirectoryViewModel()));
+            try
+            {
+                return Json(_dirMethods.GetDirectories(drivesPath).Select(x => x.ToDirectoryViewModel()));
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.Conflict, ex.InnerException.Message));
+            }
         }
 
         [HostFilesAuthorize(Roles = "Admin")]
@@ -96,7 +101,7 @@ namespace Epam.HostFiles.Web.Controllers.Api
             string filepath = path == null ?
                 drive + ":\\" + Path.GetFileName(file.FileName) :
                 drive + ":\\" + path.Replace(@"/", @"\") + "\\" + Path.GetFileName(file.FileName);
-            
+
             return Json((await _fileMethods.AddFile(file.InputStream, filepath)).ToFileViewModel());
         }
         #endregion
