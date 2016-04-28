@@ -67,7 +67,7 @@ namespace Epam.HostFiles.Core.Infrastructure
 
         public T Get(Expression<Func<T, bool>> where)
         {
-            return _dbSet.Where(where).FirstOrDefault<T>();
+            return _dbSet.ToList().Where(where.Compile()).FirstOrDefault();
         }
 
         #endregion

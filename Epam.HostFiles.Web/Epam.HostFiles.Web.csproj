@@ -271,6 +271,9 @@
     <Content Include="Scripts\models\driveInfo.js" />
     <Content Include="Scripts\models\fileInfo.js" />
     <Content Include="Scripts\models\userInfo.js" />
+    <Content Include="Scripts\tests\tests.html" />
+    <Content Include="Scripts\tests\test-response.html" />
+    <Content Include="Scripts\tests\tests.js" />
     <Content Include="Scripts\views\adminView.js" />
     <Content Include="Scripts\views\userProfileView.js" />
     <Content Include="Scripts\views\indexView.js" />
