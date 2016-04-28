@@ -1,9 +1,6 @@
 ﻿using Epam.HostFiles.IO.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 
 namespace Epam.HostFiles.IO
@@ -23,7 +20,14 @@ namespace Epam.HostFiles.IO
         public IEnumerable<DirectoryInfo> GetDirectories(string path)
         {
             //Unauthorized access
-            return new DirectoryInfo(path).GetDirectories();
+            try
+            {
+                return new DirectoryInfo(path).GetDirectories();
+            }
+            catch(UnauthorizedAccessException ex)
+            {
+                throw new UnauthorizedAccessException("Unauthorized access was thrown", ex);
+            }
         }
     }
 }

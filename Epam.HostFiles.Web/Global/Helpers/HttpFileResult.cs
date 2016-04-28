@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -27,11 +25,22 @@ namespace Epam.HostFiles.Web.Global.Helpers
 
         public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
         {
-            var response = new HttpResponseMessage(HttpStatusCode.OK)
+            HttpResponseMessage response;
+            try
             {
-                Content = new StreamContent(File.OpenRead(_filePath))
-            };
-
+                response = new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new StreamContent(File.OpenRead(_filePath))
+                };
+            }
+            catch (IOException ex)
+            {
+                response = new HttpResponseMessage(HttpStatusCode.Forbidden)
+                {
+                    Content = new StringContent(ex.Message)
+                };
+                return Task.FromResult(response);
+            }
             var contentType = _contentType ?? MimeMapping.GetMimeMapping(Path.GetExtension(_filePath));
             response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
 

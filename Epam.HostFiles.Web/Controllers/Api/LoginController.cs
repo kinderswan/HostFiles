@@ -22,7 +22,7 @@ namespace Epam.HostFiles.Web.Controllers.Api
         public IHttpActionResult GetRegisteredUser()
         {
             var user = _auth.CurrentUser.Identity.Name;
-            return Json(_userService.GetUserInfo(user).ToUserInfoViewModel());
+            return Json(_userService.GetUserInfo(_auth.CurrentUser.Identity.Name).ToUserInfoViewModel());
         }
         [HttpPost]
         [Route("api/login")]

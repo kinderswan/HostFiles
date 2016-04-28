@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Principal;
 using System.Web;
 using Epam.HostFiles.Model.Models;
 using Epam.HostFiles.Services.Interfaces;
-using System.Web.Helpers;
 using System.Web.Security;
-using System.Web.Http;
 
 namespace Epam.HostFiles.Web.Global.Auth
 {

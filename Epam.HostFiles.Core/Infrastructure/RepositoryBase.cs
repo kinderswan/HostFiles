@@ -5,8 +5,6 @@ using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Epam.HostFiles.Core.Infrastructure
 {
@@ -69,7 +67,7 @@ namespace Epam.HostFiles.Core.Infrastructure
 
         public T Get(Expression<Func<T, bool>> where)
         {
-            return _dbSet.Where(where).FirstOrDefault<T>();
+            return _dbSet.ToList().Where(where.Compile()).FirstOrDefault();
         }
 
         #endregion

@@ -1,13 +1,8 @@
-﻿using Epam.HostFiles.Model.Models;
-using Epam.HostFiles.Services.Interfaces;
+﻿using Epam.HostFiles.Services.Interfaces;
 using Epam.HostFiles.Web.Global.Auth;
 using Epam.HostFiles.Web.Mapping;
 using Epam.HostFiles.Web.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace Epam.HostFiles.Web.Controllers.Api

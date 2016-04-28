@@ -187,7 +187,6 @@
     <Compile Include="Controllers\Api\UserInfoController.cs" />
     <Compile Include="Controllers\Api\UserRoleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -272,6 +271,9 @@
     <Content Include="Scripts\models\driveInfo.js" />
     <Content Include="Scripts\models\fileInfo.js" />
     <Content Include="Scripts\models\userInfo.js" />
+    <Content Include="Scripts\tests\tests.html" />
+    <Content Include="Scripts\tests\test-response.html" />
+    <Content Include="Scripts\tests\tests.js" />
     <Content Include="Scripts\views\adminView.js" />
     <Content Include="Scripts\views\userProfileView.js" />
     <Content Include="Scripts\views\indexView.js" />
